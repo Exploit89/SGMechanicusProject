@@ -1,0 +1,30 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-175bc80f3fc-3852f4a1bc86fcdc": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "SGDatabase.db",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"database": "/home/aleksandr/PycharmProjects/pythonProject/SGDatabase.db",
+				"url": "jdbc:sqlite:/home/aleksandr/PycharmProjects/pythonProject/SGDatabase.db",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}

@@ -1,0 +1,14 @@
+SG Mechanicus by [INQ] Kate Simons v1.0 alpha
+
+/////////////////////////////////////////
+SQLTablework(temp).py - sample of SQL works - clean code. Needs to change SGDatabase.db.
+
+/////////////////////////////////////////
+SGDatabase.db - Main database of each object of program, includes: Ship, Equipment, Research, Implant, Academy, Recruit.
+
+- Created database files
+- Created tables: Ship, Equipment, Research, Implant, Academy, Recruit.
+- Created primary key at each table as "tablename+ID"
+
+////////////////////////////////////////
+

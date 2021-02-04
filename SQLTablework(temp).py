@@ -1,12 +1,12 @@
 import sqlite3
 
-database = ('SGDatabase.db')
+database = ('SGDatabase2.db')
 
 connect = sqlite3.connect(database)
 cursor = connect.cursor()
 
 cursor.execute("""
-    SELECT * FROM Ship
+    SELECT * FROM Ship 
 """)
 
 names = next(zip(*cursor.description))

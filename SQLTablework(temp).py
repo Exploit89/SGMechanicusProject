@@ -6,7 +6,7 @@ connect = sqlite3.connect(database)
 cursor = connect.cursor()
 
 cursor.execute("""
-    Enter your SQL code here
+    SELECT * FROM Ship
 """)
 
 names = next(zip(*cursor.description))

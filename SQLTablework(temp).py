@@ -1,16 +1,13 @@
 import sqlite3
 
-database = ('SGDatabase2.db')
+database = ('SGDatabase3.db')
 
 connect = sqlite3.connect(database)
 cursor = connect.cursor()
 
 cursor.execute("""
-    INSERT INTO Ship (Nation, Type, Tier, Name, Role1, TacticalComponent, Superdevice, ProcessorCapacity, PowerCapacity,
-    EnergyCapacity, AutoEnergyRecovery, ComponentSlots, Velocity, Agility, ShieldResEM, ShieldResKinetic, 
-    ShieldResThermal, ArmorResEM, ArmorResKinetic, ArmorResThermal, Shield, AutoShieldRecovery, Armor,
-    AutoArmorRecovery, VolumeFactor, WarpStability, CargoSpaceCapacity, Volume)
-    VALUES ('ECD', 'Frigate', 'T1', 'Mist')
+    CREATE TABLE Ship(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL    
 """)
 
 names = next(zip(*cursor.description))

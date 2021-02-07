@@ -8,7 +8,6 @@ SGDatabase.db - Main database of each object of program, includes: Ship, Equipme
 
 - Created database files
 - Created tables: Ship, Equipment, Research, Implant, Academy, Recruit.
-- Created primary key at each table as "tablename+ID"
 
 ////////////////////////////////////////
 

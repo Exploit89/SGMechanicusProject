@@ -1,6 +1,5 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtWidgets, QtGui
-from Modules.Widget import Widget
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -15,23 +14,44 @@ class MainWindow(QtWidgets.QMainWindow):
             "border:1px solid #9AA6A7;}")
         self.resize(800, 600)
         self.settings = QtCore.QSettings("Author", "SG Mechanicus")
-        self.SGM = Widget()
-        self.setCentralWidget(self.SGM)
         menuBar = self.menuBar()
         toolBar = QtWidgets.QToolBar()
+        vBoxMain = QtWidgets.QVBoxLayout()
+
         SGMMenuFile = menuBar.addMenu("&File")
-        action = SGMMenuFile.addAction(QtGui.QIcon(r"images/new.png"), "&New")
-        toolBar.addAction(action)
-        action.setStatusTip("Create new file")
-        SGMMenuFile.addSeparator()
-        toolBar.addSeparator()
+        action = SGMMenuFile.addAction(QtGui.QIcon(r"images/new.png"), "&New Profile")
+        action = SGMMenuFile.addAction(QtGui.QIcon(r"images/new.png"), "&Save Profile")
+        action = SGMMenuFile.addAction(QtGui.QIcon(r"images/new.png"), "&Load Profile")
+
+        toolBar.addAction("Implants")  # Нужно установить перед текстом переменную - действие, открывающее окно
+        toolBar.addAction("Recruit")  # Нужно установить перед текстом переменную - действие, открывающее окно
+        toolBar.addAction("Academy")  # Нужно установить перед текстом переменную - действие, открывающее окно
+        toolBar.addAction("Research")  # Нужно установить перед текстом переменную - действие, открывающее окно
+
         action = SGMMenuFile.addAction("&Quit", QtWidgets.qApp.quit)
-        action.setStatusTip("Close application")
+
+        SGMMenuFile = menuBar.addMenu("&Settings")
         SGMMenuAbout = menuBar.addMenu("&Help")
         action = SGMMenuAbout.addAction("About &application", self.aboutInfo)
-        action.setStatusTip("Get help for application")
+
+        SGMMenuFile.addSeparator()
+        toolBar.addSeparator()
+
         toolBar.setMovable(False)
         toolBar.setFloatable(False)
+
+        toolBox = QtWidgets.QToolBox()  # это говно не работает
+        toolBox.addItem(QtWidgets.QLabel("Put here Ships"), "ECD")
+        toolBox.addItem(QtWidgets.QLabel("Put here Ships"), "NEF")
+        toolBox.addItem(QtWidgets.QLabel("Put here Ships"), "RS")
+        toolBox.addItem(QtWidgets.QLabel("Put here Ships"), "OE")
+        toolBox.addItem(QtWidgets.QLabel("Put here Ships"), "USSH")
+        toolBox.addItem(QtWidgets.QLabel("Put here Ships"), "Exclusive")
+        toolBox.setCurrentIndex(0)
+
+        vBoxMain.addWidget(toolBox)
+        self.setLayout(vBoxMain)
+
         self.addToolBar(toolBar)
         if self.settings.contains("X") and self.settings.contains("Y"):
             self.move(self.settings.value("X"), self.settings.value("Y"))

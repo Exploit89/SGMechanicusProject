@@ -9,11 +9,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setWindowTitle("SG Mechanicus by [INQ]Kate Simons v0.0.1 alpha")
         self.resize(800, 600)
         self.settings = QtCore.QSettings("Author", "SG Mechanicus")  # Save current settings
-#        self.setStyleSheet(
-#            "QFrame QPushbutton {font-size:10pt;font-family:Verdana;"
-#            "color:black;font-weight:normal;}"
-#            "border:50px solid #9AA6A7;}"
-#        )
 
         menubar = self.menuBar()
         toolbar = QtWidgets.QToolBar()
@@ -42,6 +37,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
         if self.settings.contains("X") and self.settings.contains("Y"):
             self.move(self.settings.value("X"), self.settings.value("Y"))
+
+        ship_tree = QtWidgets.QVBoxLayout(self)
+        button1 = QtWidgets.QPushButton("Mist")
+        button2 = QtWidgets.QPushButton("Sprinkle")
+        ship_tree.addWidget(button1)
+        ship_tree.addWidget(button2)
+
+        self.setLayout(ship_tree)
+
+
 
     def close_event(self, event):
         g = self.geometry()

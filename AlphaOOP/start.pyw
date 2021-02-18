@@ -1,7 +1,7 @@
-# Запускающий файл
+# Starting file
 from PyQt5 import QtGui, QtWidgets
 import sys
-from Modules.MainWindow import MainWindow
+from AlphaOOP.mainwindow import MainWindow
 
 
 app = QtWidgets.QApplication(sys.argv)

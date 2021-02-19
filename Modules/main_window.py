@@ -1,17 +1,19 @@
 # Главное окно
 from PyQt5 import QtWidgets, QtGui
-from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout
+from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget
 import sys
 
 
 class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
-        QtWidgets.QWidget.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
         self.init_ui()
 
     def init_ui(self):
-        main_window = QtWidgets.QWidget()  # попробовать поработать с QMainWindow вместо QWidget
+        main_window = QtWidgets.QMainWindow()  # попробовать поработать с QMainWindow вместо QWidget
         self.setWindowTitle("SG Mechanicus by [INQ]Kate Simons v.0.0.1 alpha")
         self.setFixedSize(800, 600)
 
@@ -36,12 +38,9 @@ class MainWindow(QtWidgets.QMainWindow):
         toolbar.setFixedHeight(30)
 
         grid = QGridLayout()
-        self.setLayout(grid)
-        #central_widget = MainWindow(self)
-        #self.setCentralWidget(central_widget)  # не фурычит
-
         shiptree = QtWidgets.QVBoxLayout()
         grid.addLayout(shiptree, 0, 0)
+        self.central_widget.setLayout(grid)
 
         button1 = QtWidgets.QPushButton("button1")
         shiptree.addWidget(button1, 0)

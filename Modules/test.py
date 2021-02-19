@@ -8,9 +8,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
-        self.central_widget = QWidget()
-        self.setCentralWidget(self.central_widget)
-        self.init_ui()
+        self.central_widget = QWidget()  # Создаем виджет для центрального виджета QMainWindow
+        self.setCentralWidget(self.central_widget)  # Указываем центральный виджет
+        self.init_ui()  # Выполняет основную функцию (метод)
 
     def init_ui(self):
         main_window = QtWidgets.QMainWindow()  # попробовать поработать с QMainWindow вместо QWidget
@@ -26,7 +26,7 @@ class MainWindow(QtWidgets.QMainWindow):
         y = (desktop.height() - main_window.frameSize().height()) // 2
         self.move(x, y)
 
-        menubar = self.menuBar()
+        menubar = self.menuBar()  # главное меню
         file_menu = menubar.addMenu("File")
         exit_action = QAction("Quit", self)
         exit_action.triggered.connect(self.close)
@@ -37,13 +37,13 @@ class MainWindow(QtWidgets.QMainWindow):
         toolbar.setFloatable(False)
         toolbar.setFixedHeight(30)
 
-        grid = QGridLayout()
-        shiptree = QtWidgets.QVBoxLayout()
+        grid = QGridLayout()  # основная сетка (контейнер) компонентов
+        shiptree = QVBoxLayout()  # список шипов
         grid.addLayout(shiptree, 0, 0)
-        self.central_widget.setLayout(grid)
+        self.central_widget.setLayout(grid)  # устанавливаем сетку на центральный виджет
 
-        button1 = QtWidgets.QPushButton("button1")
-        shiptree.addWidget(button1, 0)
+        button1 = QtWidgets.QPushButton("button1")  # определяем кнопку
+        shiptree.addWidget(button1, 0)  # помещаем кнопку в компонент
 
 
 if __name__ == "__main__":

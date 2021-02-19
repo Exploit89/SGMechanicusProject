@@ -8,7 +8,7 @@ main_window = QtWidgets.QWidget()  # попробовать поработать
 main_window.setWindowTitle("SG Mechanicus by [INQ]Kate Simons v.0.0.1 alpha")
 main_window.setFixedSize(800, 600)
 
-ico = QtGui.QIcon(r"Images\SG_400x400.ico")
+ico = QtGui.QIcon("../Images/SG_main.ico")  # Иконка приложения и окна
 main_window.setWindowIcon(ico)
 app.setWindowIcon(ico)
 

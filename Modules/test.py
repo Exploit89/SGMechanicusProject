@@ -1,7 +1,7 @@
 # Главное окно
 from PyQt5 import QtWidgets, QtGui, QtCore
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame, QScrollArea
+from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame, QScrollArea, QHBoxLayout
 import sys
 
 
@@ -62,8 +62,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         grid = QGridLayout()  # основная сетка (контейнер) компонентов
         grid.setContentsMargins(5, 5, 5, 5)  # отступы компонентов на сетке
-        shiptree = QVBoxLayout()  # список шипов
-        equipmenttree = QVBoxLayout()  # список оборудки
+        shiptree = QHBoxLayout()  # список шипов
+        equipmenttree = QHBoxLayout()  # список оборудки
 
         grid.addLayout(shiptree, 2, 1, 6, 1)  # имя, координаты, кол-во строк и столбцов
         grid.addLayout(equipmenttree, 10, 1, 4, 1)
@@ -82,7 +82,7 @@ class MainWindow(QtWidgets.QMainWindow):
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         scroll.setFixedSize(5, 300)
-        scroll.setGeometry(10, 10, 10, 300)  # не фурычит
+        scroll.setGeometry(0, 0, 10, 300)  # не фурычит
 
         equipmenttreebox = QtWidgets.QToolBox(self)  # аккордеон оборудки
         equipmenttreebox.setFixedSize(100, 200)

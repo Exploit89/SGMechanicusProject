@@ -1,7 +1,7 @@
 # Главное окно
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame
+from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame, QScrollArea
 import sys
 
 
@@ -61,16 +61,26 @@ class MainWindow(QtWidgets.QMainWindow):
         take_screenshot = toolbar.addAction("Screenshot")  # Добавить в скобки перед именем - действие
 
         grid = QGridLayout()  # основная сетка (контейнер) компонентов
+        grid.setContentsMargins(5, 5, 5, 5)  # отступы компонентов на сетке
         shiptree = QVBoxLayout()  # список шипов
         equipmenttree = QVBoxLayout()  # список оборудки
 
         grid.addLayout(shiptree, 2, 1, 6, 1)  # имя, координаты, кол-во строк и столбцов
         grid.addLayout(equipmenttree, 10, 1, 4, 1)
 
+        scroll = QScrollArea()
+
         shiptreebox = QtWidgets.QToolBox(self)  # аккордеон шипов
         shiptreebox.setFixedSize(100, 300)
         shiptreebox.setFrameStyle(QFrame.StyledPanel)  # Рамка
         shiptree.addWidget(shiptreebox)
+        shiptree.addWidget(scroll)
+
+        scr = QWidget()
+        scr.setLayout(shiptree)
+        scroll.setWidget(shiptreebox)
+        scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        scroll.setGeometry(10, 300, 50, 50)
 
         equipmenttreebox = QtWidgets.QToolBox(self)  # аккордеон оборудки
         equipmenttreebox.setFixedSize(100, 200)

@@ -12,6 +12,7 @@ class MainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.central_widget = QWidget()  # Создаем виджет для центрального виджета QMainWindow
         self.setCentralWidget(self.central_widget)  # Указываем центральный виджет
+        self.settings = QtCore.QSettings("Kate Simons", "SG Mechanicus")
         self.init_ui()  # Выполняет основную функцию (метод)
 
     def init_ui(self):
@@ -33,6 +34,7 @@ class MainWindow(QtWidgets.QMainWindow):
         menubar.setContextMenuPolicy(Qt.PreventContextMenu)  # убираем меню вызываемое правой кнопкой
         file_menu = menubar.addMenu("File")
         settings_menu = menubar.addMenu("Settings")  # добавить кнопки в меню настроек
+        about_menu = menubar.addMenu("Help")
 
         exit_action = QAction("Quit", self)  # Кнопка выхода - переместить в конец, добавить диалог -> Save
         exit_action.triggered.connect(self.close)
@@ -47,6 +49,8 @@ class MainWindow(QtWidgets.QMainWindow):
         load_action = QAction("Load Profile", self)
         # добавить функцию выполнения в эту строку
         file_menu.addAction(load_action)
+
+        about_action = about_menu.addAction("About", self.aboutInfo)
 
         toolbar = self.addToolBar("something")  # блок панели инструментов (кнопки настроек профиля)
         toolbar.setMovable(False)
@@ -113,6 +117,20 @@ class MainWindow(QtWidgets.QMainWindow):
         shiptreebox.insertItem(4, button5, "USSH")  # помещаем кнопку в компонент
         shiptreebox.insertItem(5, button6, "Exclusive")  # помещаем кнопку в компонент
 
+        if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
+            self.move(self.settings.value("X"), self.settings.value("Y"))
+
+    def closeEvent(self, evt):
+        """Метод сохраняет координаты окна при закрытии"""
+        g = self.geometry()
+        self.settings.setValue("X", g.left())
+        self.settings.setValue("Y", g.top())
+
+    def aboutInfo(self):
+        """Информация о программе"""
+        QtWidgets.QMessageBox.about(self, "About app",
+                                    "<center>\"SG Mechanicus\" v0.0.1 alpha<br><br>"
+                                    "(c) [INQ]Kate Simons 2020-2021")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

@@ -62,8 +62,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         grid = QGridLayout()  # основная сетка (контейнер) компонентов
         shiptree = QVBoxLayout()  # список шипов
-        #shiptree.setAlignment(self, Qt.AlignLeft)
-        grid.addLayout(shiptree, 0, 0)
+        grid.addLayout(shiptree, 0, 0, 10, 1)  # имя, координаты, кол-во строк и столбцов
 
         shiptreebox = QtWidgets.QToolBox(self)
         shiptreebox.setFixedSize(100, 500)

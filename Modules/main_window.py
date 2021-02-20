@@ -1,7 +1,7 @@
 # Главное окно
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame
 import sys
 
 
@@ -62,11 +62,28 @@ class MainWindow(QtWidgets.QMainWindow):
 
         grid = QGridLayout()  # основная сетка (контейнер) компонентов
         shiptree = QVBoxLayout()  # список шипов
-        grid.addLayout(shiptree, 0, 0, 10, 1)  # имя, координаты, кол-во строк и столбцов
+        equipmenttree = QVBoxLayout()  # список оборудки
 
-        shiptreebox = QtWidgets.QToolBox(self)
-        shiptreebox.setFixedSize(100, 500)
+        grid.addLayout(shiptree, 2, 1, 6, 1)  # имя, координаты, кол-во строк и столбцов
+        grid.addLayout(equipmenttree, 10, 1, 4, 1)
+
+        shiptreebox = QtWidgets.QToolBox(self)  # аккордеон шипов
+        shiptreebox.setFixedSize(100, 300)
+        shiptreebox.setFrameStyle(QFrame.StyledPanel)  # Рамка
         shiptree.addWidget(shiptreebox)
+
+        equipmenttreebox = QtWidgets.QToolBox(self)  # аккордеон оборудки
+        equipmenttreebox.setFixedSize(100, 200)
+        equipmenttreebox.setFrameStyle(QFrame.StyledPanel)  # Рамка
+        equipmenttree.addWidget(equipmenttreebox)
+
+        button01 = QtWidgets.QPushButton("Railgun")
+        button02 = QtWidgets.QPushButton("Recharger")
+        button03 = QtWidgets.QPushButton("Enhancer")
+
+        equipmenttreebox.insertItem(0, button01, "Weapon")
+        equipmenttreebox.insertItem(1, button02, "Device")
+        equipmenttreebox.insertItem(2, button03, "Component")
 
         self.central_widget.setLayout(grid)  # устанавливаем сетку на центральный виджет
 

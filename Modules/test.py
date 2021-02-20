@@ -69,6 +69,7 @@ class MainWindow(QtWidgets.QMainWindow):
         grid.addLayout(equipmenttree, 10, 1, 4, 1)
 
         scroll = QScrollArea()
+        scr = QWidget()
 
         shiptreebox = QtWidgets.QToolBox(self)  # аккордеон шипов
         shiptreebox.setFixedSize(100, 300)
@@ -76,11 +77,12 @@ class MainWindow(QtWidgets.QMainWindow):
         shiptree.addWidget(shiptreebox)
         shiptree.addWidget(scroll)
 
-        scr = QWidget()
         scr.setLayout(shiptree)
         scroll.setWidget(shiptreebox)
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        scroll.setGeometry(10, 300, 50, 50)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll.setFixedSize(5, 300)
+        scroll.setGeometry(10, 10, 10, 300)  # не фурычит
 
         equipmenttreebox = QtWidgets.QToolBox(self)  # аккордеон оборудки
         equipmenttreebox.setFixedSize(100, 200)

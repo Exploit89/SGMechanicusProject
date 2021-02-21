@@ -1,7 +1,7 @@
 # Главное окно
-from PyQt5 import QtWidgets, QtGui
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame
+from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame, QScrollArea, QHBoxLayout
 import sys
 
 
@@ -12,6 +12,7 @@ class MainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.central_widget = QWidget()  # Создаем виджет для центрального виджета QMainWindow
         self.setCentralWidget(self.central_widget)  # Указываем центральный виджет
+        self.settings = QtCore.QSettings("Kate Simons", "SG Mechanicus")
         self.init_ui()  # Выполняет основную функцию (метод)
 
     def init_ui(self):
@@ -33,6 +34,7 @@ class MainWindow(QtWidgets.QMainWindow):
         menubar.setContextMenuPolicy(Qt.PreventContextMenu)  # убираем меню вызываемое правой кнопкой
         file_menu = menubar.addMenu("File")
         settings_menu = menubar.addMenu("Settings")  # добавить кнопки в меню настроек
+        about_menu = menubar.addMenu("Help")
 
         exit_action = QAction("Quit", self)  # Кнопка выхода - переместить в конец, добавить диалог -> Save
         exit_action.triggered.connect(self.close)
@@ -48,6 +50,8 @@ class MainWindow(QtWidgets.QMainWindow):
         # добавить функцию выполнения в эту строку
         file_menu.addAction(load_action)
 
+        about_action = about_menu.addAction("About", self.aboutInfo)
+
         toolbar = self.addToolBar("something")  # блок панели инструментов (кнопки настроек профиля)
         toolbar.setMovable(False)
         toolbar.setFloatable(False)
@@ -61,16 +65,28 @@ class MainWindow(QtWidgets.QMainWindow):
         take_screenshot = toolbar.addAction("Screenshot")  # Добавить в скобки перед именем - действие
 
         grid = QGridLayout()  # основная сетка (контейнер) компонентов
-        shiptree = QVBoxLayout()  # список шипов
-        equipmenttree = QVBoxLayout()  # список оборудки
+        grid.setContentsMargins(5, 5, 5, 5)  # отступы компонентов на сетке
+        shiptree = QHBoxLayout()  # список шипов
+        equipmenttree = QHBoxLayout()  # список оборудки
 
         grid.addLayout(shiptree, 2, 1, 6, 1)  # имя, координаты, кол-во строк и столбцов
         grid.addLayout(equipmenttree, 10, 1, 4, 1)
+
+        scroll = QScrollArea()
+        scr = QWidget()
 
         shiptreebox = QtWidgets.QToolBox(self)  # аккордеон шипов
         shiptreebox.setFixedSize(100, 300)
         shiptreebox.setFrameStyle(QFrame.StyledPanel)  # Рамка
         shiptree.addWidget(shiptreebox)
+        shiptree.addWidget(scroll)
+
+        scr.setLayout(shiptree)
+        scroll.setWidget(shiptreebox)
+        scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll.setFixedSize(5, 300)
+        scroll.setGeometry(0, 0, 10, 300)  # не фурычит
 
         equipmenttreebox = QtWidgets.QToolBox(self)  # аккордеон оборудки
         equipmenttreebox.setFixedSize(100, 200)
@@ -101,6 +117,20 @@ class MainWindow(QtWidgets.QMainWindow):
         shiptreebox.insertItem(4, button5, "USSH")  # помещаем кнопку в компонент
         shiptreebox.insertItem(5, button6, "Exclusive")  # помещаем кнопку в компонент
 
+        if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
+            self.move(self.settings.value("X"), self.settings.value("Y"))
+
+    def closeEvent(self, evt):
+        """Метод сохраняет координаты окна при закрытии"""
+        g = self.geometry()
+        self.settings.setValue("X", g.left())
+        self.settings.setValue("Y", g.top())
+
+    def aboutInfo(self):
+        """Информация о программе"""
+        QtWidgets.QMessageBox.about(self, "About app",
+                                    "<center>\"SG Mechanicus\" v0.0.1 alpha<br><br>"
+                                    "(c) [INQ]Kate Simons 2020-2021")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

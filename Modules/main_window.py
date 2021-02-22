@@ -117,6 +117,18 @@ class MainWindow(QtWidgets.QMainWindow):
         shiptreebox.insertItem(4, button5, "USSH")  # помещаем кнопку в компонент
         shiptreebox.insertItem(5, button6, "Exclusive")  # помещаем кнопку в компонент
 
+        main_image_frame = QtWidgets.QFrame()  # рамка для главной картинки
+        main_image_frame.setFixedSize(300, 300)
+        main_image_frame.setFrameStyle(QFrame.StyledPanel)
+        grid.addWidget(main_image_frame, 2, 3, 6, 7)
+
+        description_frame = QtWidgets.QFrame()  # рамка для показателей
+        description_frame.setFixedSize(300, 500)
+        description_frame.setFrameStyle(QFrame.StyledPanel)
+        grid.addWidget(description_frame, 2, 11, 12, 1)
+
+        grid.setColumnMinimumWidth(0, 10)  # ширина пустой колонки
+
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))
 

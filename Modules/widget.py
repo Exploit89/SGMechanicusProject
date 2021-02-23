@@ -12,14 +12,14 @@ class Widget(QtWidgets.QWidget):
         shiptree = QtWidgets.QVBoxLayout()  # Дерево шипов
         frame_shiptree = QtWidgets.QFrame()  # Рамка
         frame_shiptree.setFrameStyle(QtWidgets.QFrame.StyledPanel)
-        frame_shiptree.setFixedSize(100, 300)
+        frame_shiptree.setFixedSize(100, 250)
         frame_shiptree.setLayout(shiptree)
         grid.addWidget(frame_shiptree, 2, 1, 6, 1)
 
         equipmenttree = QtWidgets.QVBoxLayout()  # Дерево эквипа
         frame_equipmenttree = QtWidgets.QFrame()  # Рамка
         frame_equipmenttree.setFrameStyle(QtWidgets.QFrame.StyledPanel)
-        frame_equipmenttree.setFixedSize(100, 170)
+        frame_equipmenttree.setFixedSize(100, 220)
         frame_equipmenttree.setLayout(equipmenttree)
         grid.addWidget(frame_equipmenttree, 10, 1, 4, 1)
 
@@ -48,7 +48,7 @@ class Widget(QtWidgets.QWidget):
         equipmenttree.addWidget(button05)
 
         main_image_frame = QtWidgets.QFrame()  # рамка для главной картинки
-        main_image_frame.setFixedSize(300, 300)
+        main_image_frame.setFixedSize(250, 250)
         main_image_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         grid.addWidget(main_image_frame, 2, 3, 6, 7)
 
@@ -57,14 +57,79 @@ class Widget(QtWidgets.QWidget):
         description_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         grid.addWidget(description_frame, 2, 11, 12, 1)
 
+        component_frame1 = QtWidgets.QFrame()
+        component_frame1.setFixedSize(50, 50)
+        component_frame1.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(component_frame1, 10, 3, 1, 1)
+
+        component_frame2 = QtWidgets.QFrame()
+        component_frame2.setFixedSize(50, 50)
+        component_frame2.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(component_frame2, 10, 4, 1, 1)
+
+        component_frame3 = QtWidgets.QFrame()
+        component_frame3.setFixedSize(50, 50)
+        component_frame3.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(component_frame3, 10, 5, 1, 1)
+
+        component_frame4 = QtWidgets.QFrame()
+        component_frame4.setFixedSize(50, 50)
+        component_frame4.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(component_frame4, 12, 3, 1, 1)
+
+        component_frame5 = QtWidgets.QFrame()
+        component_frame5.setFixedSize(50, 50)
+        component_frame5.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(component_frame5, 12, 4, 1, 1)
+
+        component_frame6 = QtWidgets.QFrame()
+        component_frame6.setFixedSize(50, 50)
+        component_frame6.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(component_frame6, 12, 5, 1, 1)
+
+        component_frame7 = QtWidgets.QFrame()
+        component_frame7.setFixedSize(50, 50)
+        component_frame7.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(component_frame7, 14, 3, 1, 1)
+
+        weapon_frame1 = QtWidgets.QFrame()
+        weapon_frame1.setFixedSize(50, 50)
+        weapon_frame1.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(weapon_frame1, 10, 7, 1, 1)
+
+        weapon_frame2 = QtWidgets.QFrame()
+        weapon_frame2.setFixedSize(50, 50)
+        weapon_frame2.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(weapon_frame2, 10, 8, 1, 1)
+
+        weapon_frame3 = QtWidgets.QFrame()
+        weapon_frame3.setFixedSize(50, 50)
+        weapon_frame3.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(weapon_frame3, 10, 9, 1, 1)
+
+        device_frame1 = QtWidgets.QFrame()
+        device_frame1.setFixedSize(50, 50)
+        device_frame1.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(device_frame1, 12, 7, 1, 1)
+
+        device_frame2 = QtWidgets.QFrame()
+        device_frame2.setFixedSize(50, 50)
+        device_frame2.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(device_frame2, 12, 8, 1, 1)
+
+        device_frame3 = QtWidgets.QFrame()
+        device_frame3.setFixedSize(50, 50)
+        device_frame3.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(device_frame3, 12, 9, 1, 1)
+
         grid.setColumnMinimumWidth(0, 1)  # ширина пустой колонки
         grid.setColumnMinimumWidth(2, 20)
         grid.setColumnMinimumWidth(10, 1)
         grid.setColumnMinimumWidth(12, 1)
 
         grid.setRowMinimumHeight(0, 1)  # высота пустой строки
-        grid.setRowMinimumHeight(8, 10)
-        grid.setRowMinimumHeight(14, 15)
+        grid.setRowMinimumHeight(9, 10)
+        grid.setRowMinimumHeight(15, 30)
 
         image_label = QtWidgets.QLabel("shipname")  # задаем лейбл над картинкой шип+фит
         image_fit_label = QtWidgets.QLabel("fit name")
@@ -78,7 +143,16 @@ class Widget(QtWidgets.QWidget):
         grid.addWidget(shiptree_label, 1, 1, 1, 1, QtCore.Qt.AlignCenter)
 
         equipmenttree_label = QtWidgets.QLabel("Equipment")  # лейбл дерева эквипа
-        grid.addWidget(equipmenttree_label, 8, 1, 1, 1, QtCore.Qt.AlignCenter)
+        grid.addWidget(equipmenttree_label, 9, 1, 1, 1, QtCore.Qt.AlignCenter)
+
+        component_slot_label = QtWidgets.QLabel("Components")
+        grid.addWidget(component_slot_label, 9, 3, 1, 3, QtCore.Qt.AlignCenter)
+
+        weapon_slot_label = QtWidgets.QLabel("Weapons")
+        grid.addWidget(weapon_slot_label, 9, 7, 1, 3, QtCore.Qt.AlignCenter)
+
+        device_slot_label = QtWidgets.QLabel("Devices")
+        grid.addWidget(device_slot_label, 11, 7, 1, 3, QtCore.Qt.AlignCenter)
 
         self.setLayout(grid)
 

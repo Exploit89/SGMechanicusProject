@@ -1,7 +1,8 @@
 # Главное окно
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame, QScrollArea, QHBoxLayout
+from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame, QScrollArea, QHBoxLayout, \
+    QStackedWidget, QStackedLayout, QScrollBar
 import sys
 
 
@@ -73,7 +74,7 @@ class MainWindow(QtWidgets.QMainWindow):
         grid.addLayout(equipmenttree, 10, 1, 4, 1)
 
         scroll = QScrollArea()
-        scr = QWidget()
+        #scr = QWidget()
 
         shiptreebox = QtWidgets.QToolBox(self)  # аккордеон шипов
         shiptreebox.setFixedSize(100, 300)
@@ -81,7 +82,7 @@ class MainWindow(QtWidgets.QMainWindow):
         shiptree.addWidget(shiptreebox)
         shiptree.addWidget(scroll)
 
-        scr.setLayout(shiptree)
+        #scr.setLayout(grid)
         scroll.setWidget(shiptreebox)
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -103,6 +104,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.central_widget.setLayout(grid)  # устанавливаем сетку на центральный виджет
 
+        """поработать над отображением дерева шипов"""
         button1 = QtWidgets.QPushButton("Shipname1")  # определяем кнопку
         button2 = QtWidgets.QPushButton("Shipname2")  # определяем кнопку
         button3 = QtWidgets.QPushButton("Shipname3")  # определяем кнопку
@@ -127,7 +129,7 @@ class MainWindow(QtWidgets.QMainWindow):
         description_frame.setFrameStyle(QFrame.StyledPanel)
         grid.addWidget(description_frame, 2, 11, 12, 1)
 
-        grid.setColumnMinimumWidth(0, 10)  # ширина пустой колонки
+        grid.setColumnMinimumWidth(0, 1)  # ширина пустой колонки
 
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))

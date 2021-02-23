@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtWidgets import QGridLayout, QAction, QVBoxLayout, QWidget, QFrame, QScrollArea, QHBoxLayout, \
-    QStackedWidget, QStackedLayout
+    QStackedWidget, QStackedLayout, QScrollBar
 import sys
 
 
@@ -74,7 +74,7 @@ class MainWindow(QtWidgets.QMainWindow):
         grid.addLayout(equipmenttree, 10, 1, 4, 1)
 
         scroll = QScrollArea()
-        scr = QWidget()
+        #scr = QWidget()
 
         shiptreebox = QtWidgets.QToolBox(self)  # аккордеон шипов
         shiptreebox.setFixedSize(100, 300)
@@ -82,11 +82,12 @@ class MainWindow(QtWidgets.QMainWindow):
         shiptree.addWidget(shiptreebox)
         shiptree.addWidget(scroll)
 
-        scr.setLayout(grid)
+        #scr.setLayout(grid)
         scroll.setWidget(shiptreebox)
+        #scroll.setWidgetResizable(True)
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        #scroll.setFixedSize(5, 300)
+        scroll.setFixedSize(5, 300)
         scroll.setGeometry(0, 0, 10, 300)  # не фурычит
 
         equipmenttreebox = QtWidgets.QToolBox(self)  # аккордеон оборудки

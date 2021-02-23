@@ -7,7 +7,7 @@ class Widget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         grid = QtWidgets.QGridLayout()  # Создаем сетку для всех элементов главного виджета
-        grid.setSpacing(5)  # Расстояние между элементами сетки
+        grid.setSpacing(1)  # Расстояние между элементами сетки
 
         shiptree = QtWidgets.QVBoxLayout()  # Дерево шипов
         frame_shiptree = QtWidgets.QFrame()  # Рамка
@@ -19,7 +19,7 @@ class Widget(QtWidgets.QWidget):
         equipmenttree = QtWidgets.QVBoxLayout()  # Дерево эквипа
         frame_equipmenttree = QtWidgets.QFrame()  # Рамка
         frame_equipmenttree.setFrameStyle(QtWidgets.QFrame.StyledPanel)
-        frame_equipmenttree.setFixedSize(100, 220)
+        frame_equipmenttree.setFixedSize(100, 230)
         frame_equipmenttree.setLayout(equipmenttree)
         grid.addWidget(frame_equipmenttree, 10, 1, 4, 1)
 
@@ -50,12 +50,22 @@ class Widget(QtWidgets.QWidget):
         main_image_frame = QtWidgets.QFrame()  # рамка для главной картинки
         main_image_frame.setFixedSize(250, 250)
         main_image_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
-        grid.addWidget(main_image_frame, 2, 3, 6, 7)
+        grid.addWidget(main_image_frame, 2, 3, 6, 6)
 
         description_frame = QtWidgets.QFrame()  # рамка для показателей
         description_frame.setFixedSize(300, 500)
         description_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
-        grid.addWidget(description_frame, 2, 11, 12, 1)
+        grid.addWidget(description_frame, 2, 12, 12, 1)
+
+        superdevice_frame = QtWidgets.QFrame()  # рамка для супердевайса
+        superdevice_frame.setFixedSize(50, 50)
+        superdevice_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(superdevice_frame, 2, 9, 1, 1)
+
+        tactical_component_frame = QtWidgets.QFrame()  # рамка для тактического компонента
+        tactical_component_frame.setFixedSize(50, 50)
+        tactical_component_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
+        grid.addWidget(tactical_component_frame, 4, 9, 1, 1)
 
         component_frame1 = QtWidgets.QFrame()
         component_frame1.setFixedSize(50, 50)
@@ -124,26 +134,33 @@ class Widget(QtWidgets.QWidget):
 
         grid.setColumnMinimumWidth(0, 1)  # ширина пустой колонки
         grid.setColumnMinimumWidth(2, 20)
-        grid.setColumnMinimumWidth(10, 1)
-        grid.setColumnMinimumWidth(12, 1)
+        grid.setColumnMinimumWidth(6, 5)
+        grid.setColumnMinimumWidth(11, 20)
+        grid.setColumnMinimumWidth(13, 1)
 
         grid.setRowMinimumHeight(0, 1)  # высота пустой строки
-        grid.setRowMinimumHeight(9, 10)
-        grid.setRowMinimumHeight(15, 30)
+        grid.setRowMinimumHeight(8, 10)
+        grid.setRowMinimumHeight(15, 25)
 
         image_label = QtWidgets.QLabel("shipname")  # задаем лейбл над картинкой шип+фит
         image_fit_label = QtWidgets.QLabel("fit name")
-        grid.addWidget(image_label, 1, 4, 1, 2)
-        grid.addWidget(image_fit_label, 1, 6, 1, 3)
+        grid.addWidget(image_label, 1, 3, 1, 2)
+        grid.addWidget(image_fit_label, 1, 5, 1, 3)
 
         description_label = QtWidgets.QLabel("Description")  # лейбл итоговых характеристик
-        grid.addWidget(description_label, 1, 11, 1, 1, QtCore.Qt.AlignCenter)
+        grid.addWidget(description_label, 1, 12, 1, 1, QtCore.Qt.AlignCenter)
 
         shiptree_label = QtWidgets.QLabel("Ships")  # лейбл дерева шипов
         grid.addWidget(shiptree_label, 1, 1, 1, 1, QtCore.Qt.AlignCenter)
 
         equipmenttree_label = QtWidgets.QLabel("Equipment")  # лейбл дерева эквипа
         grid.addWidget(equipmenttree_label, 9, 1, 1, 1, QtCore.Qt.AlignCenter)
+
+        superdevice_label = QtWidgets.QLabel("S-Device")
+        grid.addWidget(superdevice_label, 1, 9, 1, 1, QtCore.Qt.AlignCenter)
+
+        tactical_component_label = QtWidgets.QLabel("Tactical")
+        grid.addWidget(tactical_component_label, 3, 9, 1, 1, QtCore.Qt.AlignCenter | QtCore.Qt.AlignBottom)
 
         component_slot_label = QtWidgets.QLabel("Components")
         grid.addWidget(component_slot_label, 9, 3, 1, 3, QtCore.Qt.AlignCenter)
@@ -152,7 +169,7 @@ class Widget(QtWidgets.QWidget):
         grid.addWidget(weapon_slot_label, 9, 7, 1, 3, QtCore.Qt.AlignCenter)
 
         device_slot_label = QtWidgets.QLabel("Devices")
-        grid.addWidget(device_slot_label, 11, 7, 1, 3, QtCore.Qt.AlignCenter)
+        grid.addWidget(device_slot_label, 11, 7, 1, 3, QtCore.Qt.AlignCenter | QtCore.Qt.AlignBottom)
 
         self.setLayout(grid)
 

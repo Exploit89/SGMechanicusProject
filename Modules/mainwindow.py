@@ -1,7 +1,7 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Modules.widget import Widget
-
+import time
 
 class MainWindow(QtWidgets.QMainWindow):
 
@@ -51,10 +51,28 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))
 
+    def load_data(self, sp):
+        for i in range(1, 101):
+            time.sleep(0.03)
+            sp.showMessage("Loading... {0}%".format(i * 1),
+                           QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom, QtCore.Qt.white)
+            QtWidgets.qApp.processEvents()
+
     def closeEvent(self, evt):
+        """при закрытии - сохранение координат положения окна и диалог сохранения"""
         g = self.geometry()
         self.settings.setValue("X", g.left())
         self.settings.setValue("Y", g.top())
+
+        result = QtWidgets.QMessageBox.question(self.SGM, "Closing confirmation",
+                                                "Do you really want to close window?",
+                                                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                                QtWidgets.QMessageBox.No)
+        if result == QtWidgets.QMessageBox.Yes:
+            evt.accept()
+            QtWidgets.QWidget.closeEvent(self.SGM, evt)
+        else:
+            evt.ignore()
 
     def aboutInfo(self):
         """Информация о программе"""

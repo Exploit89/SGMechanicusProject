@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Modules.widget import Widget
 import time
 
+
 class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
@@ -52,6 +53,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.move(self.settings.value("X"), self.settings.value("Y"))
 
     def load_data(self, sp):
+        """Экран загрузки и сплэшскрин"""
         for i in range(1, 101):
             time.sleep(0.03)
             sp.showMessage("Loading... {0}%".format(i * 1),

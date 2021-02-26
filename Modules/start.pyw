@@ -4,6 +4,7 @@ import sys
 import time
 
 from Modules.mainwindow import MainWindow
+import styles
 
 app = QtWidgets.QApplication(sys.argv)
 ico = QtGui.QIcon("../Images/SG_main.ico")  # Иконка приложения и окна
@@ -16,20 +17,7 @@ splash.showMessage("Loading... 0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBott
 progressbar = QtWidgets.QProgressBar(splash)  # Полоса загрузки на заставке
 progressbar.setGeometry(0, 521, 700, 5)
 progressbar.setTextVisible(False)
-
-progressbar_style = """
-QProgressBar{
-    background-color: #36393F;
-    border: 1px black;
-    border-radius: 1px;
-}
-
-QProgressBar::chunk {
-    background-color: #EC6936;
-}
-"""
-
-progressbar.setStyleSheet(progressbar_style)
+progressbar.setStyleSheet(styles.progressbar_style)
 
 splash.setMask(splash_pic.mask())
 

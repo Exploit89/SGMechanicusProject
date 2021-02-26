@@ -52,13 +52,6 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))
 
-    def load_data(self, sp):
-        """Экран загрузки и сплэшскрин"""
-        for i in range(1, 101):
-            time.sleep(0.03)
-            sp.showMessage("Loading... {0}%".format(i * 1),
-                           QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom, QtCore.Qt.white)
-            QtWidgets.qApp.processEvents()
 
     def closeEvent(self, evt):
         """при закрытии - сохранение координат положения окна и диалог сохранения"""

@@ -1,9 +1,15 @@
 # Оформление программы
 """Стили"""
 
+window_style = """
+QMainWindow {
+    background-color: #36393F;
+}
+"""
+
 """Стиль полосы загрузки"""
 progressbar_style = """
-QProgressBar{
+QProgressBar {
     background-color: #36393F; 
     border: 1px black;
     border-radius: 1px;

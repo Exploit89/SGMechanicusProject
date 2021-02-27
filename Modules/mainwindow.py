@@ -1,6 +1,7 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Modules.widget import Widget
+from Modules import styles
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -12,6 +13,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.settings = QtCore.QSettings("Kate Simons", "SG Mechanicus")
         self.SGM = Widget()
         self.setCentralWidget(self.SGM)
+        self.setStyleSheet(styles.window_style)
 
         menubar = self.menuBar()  # главное меню
         menubar.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)  # убираем меню вызываемое правой кнопкой

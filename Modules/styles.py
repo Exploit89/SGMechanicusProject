@@ -12,3 +12,18 @@ QProgressBar::chunk {
     background-color: #EC6936;
 }
 """
+
+
+"""Стиль скроллбара"""
+scrollbar = """
+            QScrollBar:vertical {
+                border: 1px black;
+                width: 5px;
+                height: 100px;
+                margin: 0 0 0 0;
+            }
+            QScrollBar::handle:vertical {
+                background: #36393F;
+                min-height: 20px;
+            }
+            """

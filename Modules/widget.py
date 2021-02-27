@@ -1,7 +1,7 @@
 # Основной виджет
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from Modules import shiplist
+from Modules import shiplist, equipmentlist
 
 
 class Widget(QtWidgets.QWidget):
@@ -19,32 +19,15 @@ class Widget(QtWidgets.QWidget):
 
         equipmenttree = QtWidgets.QVBoxLayout()  # Дерево эквипа
         frame_equipmenttree = QtWidgets.QFrame()  # Рамка
-        frame_equipmenttree.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         frame_equipmenttree.setFixedSize(200, 230)
         frame_equipmenttree.setLayout(equipmenttree)
         grid.addWidget(frame_equipmenttree, 10, 1, 4, 1)
 
-        button1 = QtWidgets.QPushButton("Shipname1")  # определяем кнопку
-        button2 = QtWidgets.QPushButton("Shipname2")
-        button3 = QtWidgets.QPushButton("Shipname3")
-        button4 = QtWidgets.QPushButton("Shipname4")
-        button5 = QtWidgets.QPushButton("Shipname5")
-
         shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления
+        equipmenttreebox = equipmentlist.EquipmentTreeView()
 
         shiptree.addWidget(shiptreebox)  # добавляем список шипов
-
-        button01 = QtWidgets.QPushButton("equip1")  # определяем кнопку
-        button02 = QtWidgets.QPushButton("equip2")
-        button03 = QtWidgets.QPushButton("equip3")
-        button04 = QtWidgets.QPushButton("equip4")
-        button05 = QtWidgets.QPushButton("equip5")
-
-        equipmenttree.addWidget(button01)  # Добавляем кнопку
-        equipmenttree.addWidget(button02)
-        equipmenttree.addWidget(button03)
-        equipmenttree.addWidget(button04)
-        equipmenttree.addWidget(button05)
+        equipmenttree.addWidget(equipmenttreebox)  # Добавляем кнопку
 
         main_image_frame = QtWidgets.QFrame()  # рамка для главной картинки
         main_image_frame.setFixedSize(250, 250)

@@ -1,4 +1,5 @@
-# Оформление программы - основные стили
+# Оформление программы
+"""Стили"""
 
 """Стиль полосы загрузки"""
 progressbar_style = """
@@ -15,7 +16,7 @@ QProgressBar::chunk {
 
 
 """Стиль скроллбара"""
-scrollbar = """
+scrollbar_style = """
             QScrollBar:vertical {
                 border: 1px black;
                 width: 5px;

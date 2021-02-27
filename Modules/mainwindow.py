@@ -1,7 +1,6 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Modules.widget import Widget
-import time
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -51,7 +50,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))
-
 
     def closeEvent(self, evt):
         """при закрытии - сохранение координат положения окна и диалог сохранения"""

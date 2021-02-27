@@ -29,11 +29,19 @@ for i in range(0, 101):
     t = time.time()
     while time.time() < t + 0.03:
         splash.showMessage("Loading... {0}%".format(i * 1),
-                       QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom, QtCore.Qt.white)
+                           QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom, QtCore.Qt.white)
         app.processEvents()
 time.sleep(0.9)
 
 window = MainWindow()
 window.show()
+
+"""постоянная центровка окна"""
+window.move(window.width() * -2, 0)
+desktop = QtWidgets.QApplication.desktop()
+x = (desktop.width() - window.frameSize().width()) // 2
+y = (desktop.height() - window.frameSize().height()) // 2
+window.move(x, y)
+
 splash.finish(window)
 sys.exit(app.exec_())

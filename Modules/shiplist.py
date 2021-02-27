@@ -1,5 +1,7 @@
 # Списки имен шипов
 from PyQt5 import QtGui, QtWidgets
+from Modules import styles
+
 
 frigate_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
 ECD_frigate_list = ['T1', 'T2', 'T3']
@@ -23,6 +25,10 @@ class ShipTreeView(QtWidgets.QTreeView):
     def __init__(self, parent=None):
         QtWidgets.QTreeView.__init__(self, parent)
         self.ship_standard_item_model = QtGui.QStandardItemModel()
+        self.setStyleSheet(styles.scrollbar_style)
+        self.setAnimated(True)
+        self.setIndentation(0)
+        self.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
         frigate_class = QtGui.QStandardItem(QtGui.QIcon(frigate_icon), 'Frigate')
         for i in range(len(frigate_list)):

@@ -3,9 +3,11 @@ from PyQt5 import QtGui, QtWidgets
 from Modules import styles
 
 
-frigate_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
-ECD_frigate_list = ['T1', 'T2', 'T3']
-T1_ECD_frigate_list = ['Mist', 'Frost', 'Glimmer']
+mist_shiplist_name = QtGui.QStandardItem('Mist')
+frost_shiplist_name = QtGui.QStandardItem('Frost')
+glimmer_shiplist_name = QtGui.QStandardItem('Glimmer')
+
+frigate_list = (mist_shiplist_name, frost_shiplist_name, glimmer_shiplist_name)
 
 destroyer_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
 cruiser_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
@@ -19,6 +21,10 @@ cruiser_icon = "../Images/Icons/Cruis.png"
 battlecruiser_icon = "../Images/Icons/BC.png"
 battleship_icon = "../Images/Icons/BS.png"
 
+t1_icon = "../Images/Icons/T1.png"
+t2_icon = "../Images/Icons/T2.png"
+t3_icon = "../Images/Icons/T3.png"
+
 
 class ShipTreeView(QtWidgets.QTreeView):
 
@@ -31,55 +37,49 @@ class ShipTreeView(QtWidgets.QTreeView):
         self.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
         frigate_class = QtGui.QStandardItem(QtGui.QIcon(frigate_icon), 'Frigate')
-        for i in range(len(frigate_list)):
-            std_item = QtGui.QStandardItem(frigate_list[i])
-            frigate_class.appendRow([std_item])
-
         self.ship_standard_item_model.appendRow([frigate_class])
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
         destroyer_class = QtGui.QStandardItem(QtGui.QIcon(destroyer_icon), 'Destroyer')
-        for i in range(len(destroyer_list)):
-            std_item = QtGui.QStandardItem(destroyer_list[i])
-            destroyer_class.appendRow([std_item])
-
         self.ship_standard_item_model.appendRow([destroyer_class])
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
         cruiser_class = QtGui.QStandardItem(QtGui.QIcon(cruiser_icon), 'Cruiser')
-        for i in range(len(cruiser_list)):
-            std_item = QtGui.QStandardItem(cruiser_list[i])
-            cruiser_class.appendRow([std_item])
-
         self.ship_standard_item_model.appendRow([cruiser_class])
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
         battlecruiser_class = QtGui.QStandardItem(QtGui.QIcon(battlecruiser_icon), 'BattleCruiser')
-        for i in range(len(battlecruiser_list)):
-            std_item = QtGui.QStandardItem(battlecruiser_list[i])
-            battlecruiser_class.appendRow([std_item])
-
         self.ship_standard_item_model.appendRow([battlecruiser_class])
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
-        battleship_class = QtGui.QStandardItem(QtGui.QIcon(battlecruiser_icon), 'BattleShip')
-        for i in range(len(battleship_list)):
-            std_item = QtGui.QStandardItem(battleship_list[i])
-            battleship_class.appendRow([std_item])
-
+        battleship_class = QtGui.QStandardItem(QtGui.QIcon(battleship_icon), 'BattleShip')
         self.ship_standard_item_model.appendRow([battleship_class])
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
         exclusive_ship_class = QtGui.QStandardItem('Exclusive')
-        for i in range(len(exclusive_ship_list)):
-            std_item = QtGui.QStandardItem(exclusive_ship_list[i])
-            exclusive_ship_class.appendRow([std_item])
-
         self.ship_standard_item_model.appendRow([exclusive_ship_class])
+        self.header().hide()
+        self.setModel(self.ship_standard_item_model)
+
+        t1_frigate_class = QtGui.QStandardItem(QtGui.QIcon(t1_icon), 'T1')
+        frigate_class.appendRow(t1_frigate_class)
+        for i in range(len(frigate_list)):
+            stditem = QtGui.QStandardItem(frigate_list[i])
+            t1_frigate_class.appendRow([stditem])
+        self.header().hide()
+        self.setModel(self.ship_standard_item_model)
+
+        t2_frigate_class = QtGui.QStandardItem(QtGui.QIcon(t2_icon), 'T2')
+        frigate_class.appendRow(t2_frigate_class)
+        self.header().hide()
+        self.setModel(self.ship_standard_item_model)
+
+        t3_frigate_class = QtGui.QStandardItem(QtGui.QIcon(t3_icon), 'T3')
+        frigate_class.appendRow(t3_frigate_class)
         self.header().hide()
         self.setModel(self.ship_standard_item_model)

@@ -1,7 +1,7 @@
 # Основной виджет
 from PyQt5 import QtCore, QtWidgets
 
-from Modules import shiplist, equipmentlist
+from Modules import shiplist, equipmentlist, styles
 
 
 class Widget(QtWidgets.QWidget):

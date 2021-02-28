@@ -16,6 +16,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setStyleSheet(styles.window_style)
 
         menubar = self.menuBar()  # главное меню
+        menubar.setStyleSheet(styles.menu_style)
         menubar.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)  # убираем меню вызываемое правой кнопкой
         file_menu = menubar.addMenu("File")
         settings_menu = menubar.addMenu("Settings")  # добавить кнопки в меню настроек

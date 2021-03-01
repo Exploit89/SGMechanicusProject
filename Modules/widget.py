@@ -26,7 +26,13 @@ class Widget(QtWidgets.QWidget):
         shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления
         equipmenttreebox = equipmentlist.EquipmentTreeView()
 
-        shiptree.addWidget(shiptreebox)  # добавляем список шипов
+        ship_tab = QtWidgets.QTabWidget()
+        ship_tab.addTab(shiptreebox, "Ship")  # страница шипов
+        ship_tab.addTab(QtWidgets.QLabel("hhhh"), "Fit")  # страница фитов
+        shiptree.addWidget(ship_tab)  # добавляем список шипов
+        ship_tab.setCurrentIndex(0)
+        ship_tab.setStyleSheet(styles.tab_style)
+
         equipmenttree.addWidget(equipmenttreebox)  # Добавляем кнопку
 
         main_image_frame = QtWidgets.QFrame()  # рамка для главной картинки

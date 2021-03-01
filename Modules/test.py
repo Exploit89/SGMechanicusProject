@@ -1,41 +1,45 @@
-# Списки имен шипов
-
-frigate_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
-ECD_frigate_list = ['T1', 'T2', 'T3']
-T1_ECD_frigate_list = ['Mist', 'Frost', 'Glimmer']
-
-destroyer_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
-cruiser_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
-battlecruiser_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
-battleship_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
-exclusive_list = ['Frigate', 'Destroyer', 'Cruiser', 'Battlecruiser', 'Battleship']
-
-from PyQt5 import QtGui, QtWidgets
 import sys
+from PyQt5.QtCore import Qt, QPoint
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QDesktopWidget
 
 
-#app = QtWidgets.QApplication(sys.argv)
-#window = QtWidgets.QWidget()
-#window.setWindowTitle("QStandardItemModel")
-#ship_tree_view = QtWidgets.QTreeView()
-class ship_tree_view(QtWidgets.QTreeView):
+class cssden(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
-    def __init__(self, parent=None):
-        QtWidgets.QTreeView.__init__(self, parent)
-        self.ship_standard_item_model = QtGui.QStandardItemModel()
+        # <MainWindow Properties>
+        self.setFixedSize(320, 450)
+        self.setStyleSheet("QMainWindow{background-color: darkgray;border: 1px solid black}")
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.center()
+        # </MainWindow Properties>
 
-        frigate_icon = "../Images/Icons/Frig.png"
+        # <Label Properties>
+        self.lbl = QLabel(self)
+        self.lbl.setText("test")
+        self.lbl.setStyleSheet("QLabel{background-color: rgb(0,0,0); border: 1px solid red; color: rgb(255,255,255); font: bold italic 20pt 'Times New Roman';}")
+        self.lbl.setGeometry(5, 5, 60, 40)
+        # </Label Properties>
 
-        ship_class = QtGui.QStandardItem(QtGui.QIcon(frigate_icon), 'Frigate')
-        for i in range(len(frigate_list)):
-            std_item = QtGui.QStandardItem(frigate_list[i])
-            ship_class.appendRow([std_item])
+        self.oldPos = self.pos()
+        self.show()
 
-        self.ship_standard_item_model.appendRow([ship_class])
-        self.header().hide()
-        self.setModel(self.ship_standard_item_model)
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
-#ship_tree_view.setColumnWidth(0, 300)
-#ship_tree_view.resize(400, 300)
-#window.show()
-#sys.exit(app.exec_())
+    def mousePressEvent(self, event):
+        self.oldPos = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+        delta = QPoint (event.globalPos() - self.oldPos)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.oldPos = event.globalPos()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = cssden()
+    sys.exit(app.exec_())

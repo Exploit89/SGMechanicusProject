@@ -1,5 +1,8 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QPoint
+from PyQt5.QtWidgets import QDesktopWidget, QLabel
+
 from Modules.widget import Widget
 from Modules import styles
 
@@ -56,6 +59,11 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))
 
+        self.label = QLabel(self)  # Новый лейбл для окна без рамки
+        self.label.setText("SG Mechanicus by [INQ]Kate Simons v.0.0.1 alpha")
+        self.label.setStyleSheet(styles.label_style)
+        self.label.setGeometry(330, 1, 650, 20)
+
     def closeEvent(self, evt):
         """при закрытии - сохранение координат положения окна и диалог сохранения"""
         g = self.geometry()
@@ -71,6 +79,20 @@ class MainWindow(QtWidgets.QMainWindow):
             QtWidgets.QWidget.closeEvent(self.SGM, evt)
         else:
             evt.ignore()
+
+    def center(self):  # блок 3х функций для перетаскивания окна за любое место"""
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+
+    def mousePressEvent(self, event):
+        self.oldPos = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+        delta = QPoint(event.globalPos() - self.oldPos)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.oldPos = event.globalPos()
 
     def aboutInfo(self):
         """Информация о программе"""

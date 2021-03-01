@@ -1,6 +1,14 @@
 # Оформление программы
 """Стили"""
 
+label_style = """
+QLabel {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #36393F, stop:1 #2F3136);
+    color: #DCDDDE;
+    font: 11pt 'Calibri';
+}
+"""
+
 menu_style = """
 QMenuBar {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #36393F, stop:1 #2F3136);

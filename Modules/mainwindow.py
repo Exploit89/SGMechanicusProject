@@ -14,6 +14,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.SGM = Widget()
         self.setCentralWidget(self.SGM)
         self.setStyleSheet(styles.window_style)
+        self.SGM.setStyleSheet(styles.window_style)
 
         menubar = self.menuBar()  # главное меню
         menubar.setStyleSheet(styles.menu_style)
@@ -22,12 +23,6 @@ class MainWindow(QtWidgets.QMainWindow):
         settings_menu = menubar.addMenu("Settings")  # добавить кнопки в меню настроек
         about_menu = menubar.addMenu("Help")
 
-        exit_action = QtWidgets.QAction("Quit", self)  # Кнопка выхода - переместить в конец, добавить диалог -> Save
-        exit_action.triggered.connect(self.close)
-        file_menu.addAction(exit_action)
-
-        file_menu.addSeparator()  # разделитель в меню
-
         save_action = QtWidgets.QAction("Save Profile", self)
         # добавить функцию выполнения в эту строку
         file_menu.addAction(save_action)
@@ -35,6 +30,12 @@ class MainWindow(QtWidgets.QMainWindow):
         load_action = QtWidgets.QAction("Load Profile", self)
         # добавить функцию выполнения в эту строку
         file_menu.addAction(load_action)
+
+        file_menu.addSeparator()  # разделитель в меню
+
+        exit_action = QtWidgets.QAction("Quit", self)  # Кнопка выхода - переместить в конец, добавить диалог -> Save
+        exit_action.triggered.connect(self.close)
+        file_menu.addAction(exit_action)
 
         about_action = about_menu.addAction("About", self.aboutInfo)
 

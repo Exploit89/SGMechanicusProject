@@ -4,12 +4,35 @@
 menu_style = """
 QMenuBar {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #36393F, stop:1 #2F3136);
+    color: gray;
+    border-color: 1px solid #36393F;
+}
+QMenuBar::item:selected {
+    background: #36393F;
+    border: 1px solid #DCDDDE;
+    color: white;
 }
 """
 
 window_style = """
 QMainWindow {
     background-color: #36393F;
+}
+QMainWindow::separator {
+    background: #36393F;
+}
+QMenu {
+    background-color: #36393F;
+    color: #DCDDDE;
+}
+QMenu::item:selected {
+    background-color: #2F3136;
+    border: 1px solid #DCDDDE;
+    color: white;
+}
+QWidget {
+    background: #36393F;
+    color: #DCDDDE;
 }
 """
 

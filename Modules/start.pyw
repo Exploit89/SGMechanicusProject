@@ -17,7 +17,7 @@ splash.showMessage("Loading... 0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBott
 progressbar = QtWidgets.QProgressBar(splash)  # Полоса загрузки на заставке
 progressbar.setGeometry(0, 521, 700, 5)
 progressbar.setTextVisible(False)
-progressbar.setStyleSheet(styles.progressbar_style)
+progressbar.setStyleSheet(styles.progressbar_style)  # стиль полосы загрузки
 
 splash.setMask(splash_pic.mask())
 
@@ -27,11 +27,11 @@ app.processEvents()
 for i in range(0, 101):
     progressbar.setValue(i)
     t = time.time()
-    while time.time() < t + 0.03:
+    while time.time() < t + 0.003:  # установить значение 0.03
         splash.showMessage("Loading... {0}%".format(i * 1),
                            QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom, QtCore.Qt.white)
         app.processEvents()
-time.sleep(0.9)
+#time.sleep(0.9)  # установить значение 0.9
 
 window = MainWindow()
 window.show()

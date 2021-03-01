@@ -5,7 +5,7 @@ menu_style = """
 QMenuBar {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #36393F, stop:1 #2F3136);
     color: gray;
-    border-color: 1px solid #36393F;
+    border: 0px solid #36393F;
 }
 QMenuBar::item:selected {
     background: #36393F;
@@ -33,6 +33,9 @@ QMenu::item:selected {
 QWidget {
     background: #36393F;
     color: #DCDDDE;
+}
+QToolBar {
+    border-bottom: 1px solid #36393F;
 }
 """
 

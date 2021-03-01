@@ -7,7 +7,8 @@ from Modules import styles
 class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
-        QtWidgets.QMainWindow.__init__(self, parent, flags=QtCore.Qt.Window | QtCore.Qt.MSWindowsFixedSizeDialogHint)
+        QtWidgets.QMainWindow.__init__(self, parent, flags=QtCore.Qt.Window | QtCore.Qt.MSWindowsFixedSizeDialogHint |
+                                       QtCore.Qt.FramelessWindowHint)
         self.setWindowTitle("SG Mechanicus by [INQ]Kate Simons v.0.0.1 alpha")
         self.setFixedSize(1000, 600)
         self.settings = QtCore.QSettings("Kate Simons", "SG Mechanicus")

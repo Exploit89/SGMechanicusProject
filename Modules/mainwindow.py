@@ -1,5 +1,6 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
 
 from Modules.widget import Widget
@@ -74,6 +75,9 @@ class MainWindow(QtWidgets.QMainWindow):
         minimize_button.move(960, 0)
         minimize_button.setFlat(True)
         minimize_button.clicked.connect(self.showMinimized)
+
+        winid = self.winId()  # sip.voidptr object at 0x000001A551084B70
+        print(winid)
 
     def closeEvent(self, evt):
         """при закрытии - сохранение координат положения окна и диалог сохранения"""

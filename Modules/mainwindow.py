@@ -1,7 +1,6 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QPoint
-from PyQt5.QtWidgets import QDesktopWidget, QLabel
+from PyQt5.QtWidgets import QLabel
 
 from Modules.widget import Widget
 from Modules import styles

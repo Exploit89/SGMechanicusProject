@@ -6,6 +6,19 @@ import time
 from Modules.mainwindow import MainWindow
 import styles
 
+
+sys._excepthook = sys.excepthook
+
+
+def my_exception_hook(exctype, value, traceback):
+    """блок отлова исключения при закрытии программы"""
+    print(exctype, value, traceback)
+    sys._excepthook(exctype, value, traceback)
+    sys.exit(1)
+
+
+sys.excepthook = my_exception_hook
+
 app = QtWidgets.QApplication(sys.argv)
 ico = QtGui.QIcon("../Images/SG_main.ico")  # Иконка приложения и окна
 app.setWindowIcon(ico)
@@ -44,4 +57,7 @@ y = (desktop.height() - window.frameSize().height()) // 2
 window.move(x, y)
 
 splash.finish(window)
-sys.exit(app.exec_())
+try:
+    sys.exit(app.exec_())
+except:
+    print('exiting')

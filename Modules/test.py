@@ -1,45 +1,36 @@
 import sys
-from PyQt5.QtCore import Qt, QPoint
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QDesktopWidget
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class cssden(QMainWindow):
+class ClickableLabel(QtGui.QLabel):
+    clicked = QtCore.pyqtSignal()
+
+    def mouseReleaseEvent(self, e):
+        QtGui.QLabel.mouseReleaseEvent(self, e)
+        self.clicked.emit()
+
+
+class MainWidget(QtGui.QWidget):
+
     def __init__(self):
-        super().__init__()
+        QtGui.QWidget.__init__(self)
+        self.signalMapper = QtCore.QSignalMapper()
+        layout = QtGui.QVBoxLayout()
+        for i in range(10):
+            label = ClickableLabel('Label %s' % i)
+            label.clicked.connect(self.signalMapper.map)
+            self.signalMapper.setMapping(label, i)
+            layout.addWidget(label)
+        self.signalMapper.mapped.connect(self.showUnit)
+        self.setLayout(layout)
 
-        # <MainWindow Properties>
-        self.setFixedSize(320, 450)
-        self.setStyleSheet("QMainWindow{background-color: darkgray;border: 1px solid black}")
-        self.setWindowFlags(Qt.FramelessWindowHint)
-        self.center()
-        # </MainWindow Properties>
-
-        # <Label Properties>
-        self.lbl = QLabel(self)
-        self.lbl.setText("test")
-        self.lbl.setStyleSheet("QLabel{background-color: rgb(0,0,0); border: 1px solid red; color: rgb(255,255,255); font: bold italic 20pt 'Times New Roman';}")
-        self.lbl.setGeometry(5, 5, 60, 40)
-        # </Label Properties>
-
-        self.oldPos = self.pos()
-        self.show()
-
-    def center(self):
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
-
-    def mousePressEvent(self, event):
-        self.oldPos = event.globalPos()
-
-    def mouseMoveEvent(self, event):
-        delta = QPoint (event.globalPos() - self.oldPos)
-        self.move(self.x() + delta.x(), self.y() + delta.y())
-        self.oldPos = event.globalPos()
+    def showUnit(self, args):
+        print(args)
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = cssden()
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+    window = MainWidget()
+    window.resize(640, 480)
+    window.show()
     sys.exit(app.exec_())

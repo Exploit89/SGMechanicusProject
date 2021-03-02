@@ -64,11 +64,17 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label.setStyleSheet(styles.label_style)
         self.label.setGeometry(330, 1, 650, 20)
 
-        self.quit_button = QtWidgets.QPushButton('X', self)  # кнопка закрытия окна
-        self.quit_button.setFixedSize(20, 20)
-        self.quit_button.move(980, 0)
-        self.quit_button.setFlat(True)
-        self.quit_button.clicked.connect(self.close)
+        quit_button = QtWidgets.QPushButton('X', self)  # кнопка закрытия окна
+        quit_button.setFixedSize(20, 20)
+        quit_button.move(980, 0)
+        quit_button.setFlat(True)
+        quit_button.clicked.connect(self.close)
+
+        minimize_button = QtWidgets.QPushButton('_', self)  # кнопка сворачивания окна
+        minimize_button.setFixedSize(20, 20)
+        minimize_button.move(960, 0)
+        minimize_button.setFlat(True)
+        minimize_button.clicked.connect(self.showMinimized)
 
     def closeEvent(self, evt):
         """при закрытии - сохранение координат положения окна и диалог сохранения"""

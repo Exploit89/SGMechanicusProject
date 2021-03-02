@@ -1,7 +1,7 @@
 # Основной виджет
 from PyQt5 import QtCore, QtWidgets
 
-from Modules import shiplist, equipmentlist, styles
+from Modules import shiplist, equipmentlist, styles, fitlist
 
 
 class Widget(QtWidgets.QWidget):
@@ -23,12 +23,14 @@ class Widget(QtWidgets.QWidget):
         frame_equipmenttree.setLayout(equipmenttree)
         grid.addWidget(frame_equipmenttree, 10, 1, 4, 1)
 
-        shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления
+        shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления списка шипов
         equipmenttreebox = equipmentlist.EquipmentTreeView()
+
+        fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
 
         ship_tab = QtWidgets.QTabWidget()
         ship_tab.addTab(shiptreebox, "Ship")  # страница шипов
-        ship_tab.addTab(QtWidgets.QLabel("hhhh"), "Fit")  # страница фитов
+        ship_tab.addTab(fittreebox, "Fit")  # страница фитов
         shiptree.addWidget(ship_tab)  # добавляем список шипов
         ship_tab.setCurrentIndex(0)
         ship_tab.setStyleSheet(styles.tab_style)
@@ -138,8 +140,7 @@ class Widget(QtWidgets.QWidget):
         description_label = QtWidgets.QLabel("Description")  # лейбл итоговых характеристик
         grid.addWidget(description_label, 1, 12, 1, 1, QtCore.Qt.AlignCenter)
 
-        shiptree_label = QtWidgets.QLabel("Ships")  # лейбл дерева шипов
-        grid.addWidget(shiptree_label, 1, 1, 1, 1, QtCore.Qt.AlignCenter)
+        """в сетке grid по координатам 1-1-1-1 есть место для кнопок"""
 
         equipmenttree_label = QtWidgets.QLabel("Equipment")  # лейбл дерева эквипа
         grid.addWidget(equipmenttree_label, 9, 1, 1, 1, QtCore.Qt.AlignCenter)

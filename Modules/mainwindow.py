@@ -92,19 +92,32 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             evt.ignore()
 
-    def center(self):  # блок 3х функций для перетаскивания окна за любое место"""
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
-
     def mousePressEvent(self, event):
-        self.oldPos = event.globalPos()
+        if event.button() == QtCore.Qt.LeftButton:
+            x_main = self.geometry().x()  # получаем координаты окна относительно экрана
+            y_main = self.geometry().y()
+            cursor_x = QtGui.QCursor.pos().x()  # получаем координаты курсора относительно окна нашей программы
+            cursor_y = QtGui.QCursor.pos().y()
+            if x_main <= cursor_x <= x_main + self.geometry().width():
+                if y_main <= cursor_y <= y_main + self.label.geometry().height():
+                    self.old_pos = event.pos()
+                else:
+                    self.old_pos = None
+        elif event.button() == QtCore.Qt.RightButton:
+            self.old_pos = None
+
+    def mouseReleaseEvent(self, event):
+        if event.button() == QtCore.Qt.LeftButton:
+            self.old_pos = None
 
     def mouseMoveEvent(self, event):
-        delta = QPoint(event.globalPos() - self.oldPos)
-        self.move(self.x() + delta.x(), self.y() + delta.y())
-        self.oldPos = event.globalPos()
+        try:
+            if not self.old_pos:
+                return
+            delta = event.pos() - self.old_pos
+            self.move(self.pos() + delta)
+        except:
+            pass
 
     def aboutInfo(self):
         """Информация о программе"""

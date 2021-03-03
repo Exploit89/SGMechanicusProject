@@ -1,7 +1,8 @@
 # Основной виджет
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QPaintDevice
 
-from Modules import shiplist, equipmentlist, styles, fitlist
+from Modules import shiplist, equipmentlist, styles, fitlist, centralimage
 
 
 class Widget(QtWidgets.QWidget):
@@ -16,17 +17,19 @@ class Widget(QtWidgets.QWidget):
         frame_shiptree.setFixedSize(200, 250)
         frame_shiptree.setLayout(shiptree)
         grid.addWidget(frame_shiptree, 2, 1, 6, 1)
+        shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления списка шипов
+        fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
 
         equipmenttree = QtWidgets.QVBoxLayout()  # Дерево эквипа
         frame_equipmenttree = QtWidgets.QFrame()  # Рамка
         frame_equipmenttree.setFixedSize(200, 230)
         frame_equipmenttree.setLayout(equipmenttree)
         grid.addWidget(frame_equipmenttree, 10, 1, 4, 1)
-
-        shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления списка шипов
         equipmenttreebox = equipmentlist.EquipmentTreeView()
 
-        fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
+
+        shipimagebox = centralimage.ShipImageView()
+        shipimagepanel = QPaintDevice.QImage()
 
         ship_tab = QtWidgets.QTabWidget()
         ship_tab.addTab(shiptreebox, "Ship")  # страница шипов

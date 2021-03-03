@@ -76,6 +76,9 @@ class MainWindow(QtWidgets.QMainWindow):
         minimize_button.setFlat(True)
         minimize_button.clicked.connect(self.showMinimized)
 
+        self.center()                                                     # +++
+        self.pressing = False
+
         winid = self.winId()  # sip.voidptr object at 0x000001A551084B70
         print(winid)
 
@@ -95,32 +98,24 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             evt.ignore()
 
-    def mousePressEvent(self, event):
-        if event.button() == QtCore.Qt.LeftButton:
-            x_main = self.geometry().x()  # получаем координаты окна относительно экрана
-            y_main = self.geometry().y()
-            cursor_x = QtGui.QCursor.pos().x()  # получаем координаты курсора относительно окна нашей программы
-            cursor_y = QtGui.QCursor.pos().y()
-            if x_main <= cursor_x <= x_main + self.geometry().width():
-                if y_main <= cursor_y <= y_main + self.label.geometry().height():
-                    self.old_pos = event.pos()
-                else:
-                    self.old_pos = None
-        elif event.button() == QtCore.Qt.RightButton:
-            self.old_pos = None
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtWidgets.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
-    def mouseReleaseEvent(self, event):
-        if event.button() == QtCore.Qt.LeftButton:
-            self.old_pos = None
+    def mousePressEvent(self, event):
+        self.oldPos = event.globalPos()
+        self.pressing = True  # +++ !!!
 
     def mouseMoveEvent(self, event):
-        try:
-            if not self.old_pos:
-                return
-            delta = event.pos() - self.old_pos
-            self.move(self.pos() + delta)
-        except:
-            pass
+        if self.pressing:  # +++ !!!
+            delta = QtCore.QPoint(event.globalPos() - self.oldPos)
+            self.move(self.x() + delta.x(), self.y() + delta.y())
+            self.oldPos = event.globalPos()
+
+    def mouseReleaseEvent(self, event):  # +
+        self.pressing = False
 
     def aboutInfo(self):
         """Информация о программе"""

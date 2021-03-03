@@ -1,7 +1,7 @@
 # Основное окно приложения
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QLabel
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QPixmap, QScreen
+from PyQt5.QtWidgets import QLabel, QApplication
 
 from Modules.widget import Widget
 from Modules import styles
@@ -54,7 +54,7 @@ class MainWindow(QtWidgets.QMainWindow):
         open_academy = toolbar.addAction("Academy")  # Добавить в скобки перед именем - действие
         open_research = toolbar.addAction("Research")  # Добавить в скобки перед именем - действие
         open_recruit = toolbar.addAction("Recruit")  # Добавить в скобки перед именем - действие
-        take_screenshot = toolbar.addAction("Screenshot")  # Добавить в скобки перед именем - действие
+        do_screenshot = toolbar.addAction("Screenshot", self.take_screenshot)  # Добавить в скобки перед именем - действие
 
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))
@@ -79,8 +79,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.center()                                                     # +++
         self.pressing = False
 
-        winid = self.winId()  # sip.voidptr object at 0x000001A551084B70
-        print(winid)
+        #winid = self.winId()  # sip.voidptr object at 0x000001A551084B70
+        #print(winid)
+
+    def take_screenshot(self):
+        """копирует в буфер обмена скриншот по кнопке"""
+        screen = QApplication.primaryScreen()
+        winid = self.winId()
+        pixmap = screen.grabWindow(winid, 240, 50, 750, 530)
+        clipboard = QApplication.clipboard()
+        clipboard.setPixmap(pixmap)
 
     def closeEvent(self, evt):
         """при закрытии - сохранение координат положения окна и диалог сохранения"""

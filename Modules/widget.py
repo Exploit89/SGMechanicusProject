@@ -1,9 +1,10 @@
 # Основной виджет
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
 
-from Modules import shiplist, equipmentlist, styles, fitlist
+from Modules import shiplist, equipmentlist, styles, fitlist, ships_tuples
 
 
 class Widget(QtWidgets.QWidget):
@@ -42,12 +43,18 @@ class Widget(QtWidgets.QWidget):
         main_image_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         grid.addWidget(main_image_frame, 2, 3, 6, 6)
 
-        main_image = QtWidgets.QVBoxLayout()
-        main_image_frame.setLayout(main_image)
-        imagelabel = QLabel()
-        imagelabel.setPixmap(QPixmap('Images/Ships/ECD/Mist.png'))  # ships_tuples.mist.ship_image
-        main_image.addWidget(imagelabel)
-        imagelabel.show()
+        pixmap = QPixmap(ships_tuples.mist.ship_image)  # загрузка картинки шипа
+        imagelabel = QLabel(self, alignment=Qt.AlignCenter)
+        imagelabel.setScaledContents(True)
+        imagelabel.setPixmap(pixmap)
+        hmain_image = QtWidgets.QHBoxLayout()
+        hmain_image.addWidget(imagelabel)
+        vmain_image = QtWidgets.QVBoxLayout(self)
+        vmain_image.addLayout(hmain_image)
+        vmain_image.addStretch()
+        self.setLayout(hmain_image)
+
+        main_image_frame.setLayout(vmain_image)
 
         description_frame = QtWidgets.QFrame()  # рамка для показателей
         description_frame.setFixedSize(300, 500)

@@ -48,14 +48,6 @@ for i in range(0, 101):
 
 window = MainWindow()
 window.show()
-
-"""постоянная центровка окна"""
-window.move(window.width() * -2, 0)
-desktop = QtWidgets.QApplication.desktop()
-x = (desktop.width() - window.frameSize().width()) // 2
-y = (desktop.height() - window.frameSize().height()) // 2
-window.move(x, y)
-
 splash.finish(window)
 try:
     sys.exit(app.exec_())

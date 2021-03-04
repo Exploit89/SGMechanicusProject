@@ -75,6 +75,7 @@ class MainWindow(QtWidgets.QMainWindow):
         minimize_button.setFlat(True)
         minimize_button.clicked.connect(self.showMinimized)
 
+        #self.center()                                                     # +++
         self.pressing = False
 
     def take_screenshot(self):
@@ -101,17 +102,23 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             evt.ignore()
 
+    # def center(self):
+    #     qr = self.frameGeometry()
+    #     cp = QtWidgets.QDesktopWidget().availableGeometry().center()
+    #     qr.moveCenter(cp)
+    #     self.move(qr.topLeft())
+
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
-        self.pressing = True
+        self.pressing = True  # +++ !!!
 
     def mouseMoveEvent(self, event):
-        if self.pressing:
+        if self.pressing:  # +++ !!!
             delta = QtCore.QPoint(event.globalPos() - self.oldPos)
             self.move(self.x() + delta.x(), self.y() + delta.y())
             self.oldPos = event.globalPos()
 
-    def mouseReleaseEvent(self, event):
+    def mouseReleaseEvent(self, event):  # +
         self.pressing = False
 
     def aboutInfo(self):
@@ -119,3 +126,10 @@ class MainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMessageBox.about(self, "About app",
                                     "<center>\"SG Mechanicus\" v0.0.1 alpha<br><br>"
                                     "(c) [INQ]Kate Simons 2020-2021")
+
+"""постоянная центровка окна"""
+# window.move(window.width() * -2, 0)
+# desktop = QtWidgets.QApplication.desktop()
+# x = (desktop.width() - window.frameSize().width()) // 2
+# y = (desktop.height() - window.frameSize().height()) // 2
+# window.move(x, y)

@@ -28,8 +28,8 @@ class Widget(QtWidgets.QWidget):
         equipmenttreebox = equipmentlist.EquipmentTreeView()
 
 
-        shipimagebox = centralimage.ShipImageView()
-        shipimagepanel = QPaintDevice.QImage()
+        #shipimagebox = centralimage.ShipImageView()
+        #shipimagepanel = QPaintDevice.QImage()
 
         ship_tab = QtWidgets.QTabWidget()
         ship_tab.addTab(shiptreebox, "Ship")  # страница шипов

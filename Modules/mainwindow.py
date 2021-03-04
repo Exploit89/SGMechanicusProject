@@ -1,6 +1,5 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QPixmap, QScreen
 from PyQt5.QtWidgets import QLabel, QApplication
 
 from Modules.widget import Widget
@@ -54,7 +53,7 @@ class MainWindow(QtWidgets.QMainWindow):
         open_academy = toolbar.addAction("Academy")  # Добавить в скобки перед именем - действие
         open_research = toolbar.addAction("Research")  # Добавить в скобки перед именем - действие
         open_recruit = toolbar.addAction("Recruit")  # Добавить в скобки перед именем - действие
-        do_screenshot = toolbar.addAction("Screenshot", self.take_screenshot)  # Добавить в скобки перед именем - действие
+        do_screenshot = toolbar.addAction("Screenshot", self.take_screenshot)
 
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
             self.move(self.settings.value("X"), self.settings.value("Y"))
@@ -78,9 +77,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.center()                                                     # +++
         self.pressing = False
-
-        #winid = self.winId()  # sip.voidptr object at 0x000001A551084B70
-        #print(winid)
 
     def take_screenshot(self):
         """копирует в буфер обмена скриншот по кнопке"""

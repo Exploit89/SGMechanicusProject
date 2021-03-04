@@ -1,8 +1,9 @@
 # Основной виджет
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QPaintDevice
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QLabel
 
-from Modules import shiplist, equipmentlist, styles, fitlist, centralimage
+from Modules import shiplist, equipmentlist, styles, fitlist
 
 
 class Widget(QtWidgets.QWidget):
@@ -27,10 +28,6 @@ class Widget(QtWidgets.QWidget):
         grid.addWidget(frame_equipmenttree, 10, 1, 4, 1)
         equipmenttreebox = equipmentlist.EquipmentTreeView()
 
-
-        #shipimagebox = centralimage.ShipImageView()
-        #shipimagepanel = QPaintDevice.QImage()
-
         ship_tab = QtWidgets.QTabWidget()
         ship_tab.addTab(shiptreebox, "Ship")  # страница шипов
         ship_tab.addTab(fittreebox, "Fit")  # страница фитов
@@ -44,6 +41,13 @@ class Widget(QtWidgets.QWidget):
         main_image_frame.setFixedSize(250, 250)
         main_image_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         grid.addWidget(main_image_frame, 2, 3, 6, 6)
+
+        main_image = QtWidgets.QVBoxLayout()
+        main_image_frame.setLayout(main_image)
+        imagelabel = QLabel()
+        imagelabel.setPixmap(QPixmap('Images/Ships/ECD/Mist.png'))  # ships_tuples.mist.ship_image
+        main_image.addWidget(imagelabel)
+        imagelabel.show()
 
         description_frame = QtWidgets.QFrame()  # рамка для показателей
         description_frame.setFixedSize(300, 500)

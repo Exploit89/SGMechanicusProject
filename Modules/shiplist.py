@@ -2,13 +2,13 @@
 from PyQt5 import QtGui, QtWidgets
 
 from Modules import styles
-from PyQt5.QtWidgets import QPlainTextEdit, QHBoxLayout, QApplication, QWidget
+from PyQt5.QtWidgets import *
 
-mist_shiplist_name = QtGui.QStandardItem('Mist')
-frost_shiplist_name = QtGui.QStandardItem('Frost')
-glimmer_shiplist_name = QtGui.QStandardItem('Glimmer')
-
-frigate_list = (mist_shiplist_name, frost_shiplist_name, glimmer_shiplist_name)
+# mist_shiplist_name = QtGui.QStandardItem('Mist')
+# frost_shiplist_name = QtGui.QStandardItem('Frost')
+# glimmer_shiplist_name = QtGui.QStandardItem('Glimmer')
+#
+# frigate_list = (mist_shiplist_name, frost_shiplist_name, glimmer_shiplist_name)
 
 destroyer_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
 cruiser_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
@@ -31,6 +31,12 @@ class ShipTreeView(QtWidgets.QTreeView):
 
     def __init__(self, parent=None):
         QtWidgets.QTreeView.__init__(self, parent)
+        mist_shiplist_name = QtGui.QStandardItem('Mist')
+        frost_shiplist_name = QtGui.QStandardItem('Frost')
+        glimmer_shiplist_name = QtGui.QStandardItem('Glimmer')
+
+        frigate_list = (mist_shiplist_name, frost_shiplist_name, glimmer_shiplist_name)
+
         self.ship_standard_item_model = QtGui.QStandardItemModel()
         self.setStyleSheet(styles.scrollbar_style)
         self.setAnimated(True)

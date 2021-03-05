@@ -21,6 +21,8 @@ class MainWidget(QtWidgets.QWidget):
         frame_shiptree.setLayout(shiptree)
         grid.addWidget(frame_shiptree, 2, 1, 6, 1)
         self.shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления списка шипов
+        self.shiptreebox.clicked.connect(self.on_tree_view_click)
+
         fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
 
         equipmenttree = QtWidgets.QVBoxLayout()  # Дерево эквипа
@@ -177,11 +179,13 @@ class MainWidget(QtWidgets.QWidget):
 
         self.setLayout(grid)
 
-        self.my_tree_view = ShipTreeView()
-        self.my_tree_view.clicked.connect(self.on_tree_view_click)
+        # self.my_tree_view = ShipTreeView()
+        # self.my_tree_view.clicked.connect(self.on_tree_view_click)
 
     def on_tree_view_click(self, index):
-        item = self.my_tree_view.get_item(index)
+        item = self.shiptreebox.get_item(index)
+        pointerQStandardItem = self.shiptreebox.ship_standard_item_model.itemFromIndex(index)
+        print(f'Вы кликнули -> {item.text():>8}, --> pointerQStandardItem -> {pointerQStandardItem}')
         print(item.text())
 
     def get_data_profile(self):

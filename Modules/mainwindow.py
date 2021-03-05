@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QLabel, QApplication
 
 from Modules.widget import Widget
 from Modules import styles, shiplist
+from Modules.shiplist import ShipTreeView
 
 
 class MainWindow(QtWidgets.QMainWindow):

@@ -89,6 +89,9 @@ class ShipTreeView(QtWidgets.QTreeView):
         return self.ship_standard_item_model.itemFromIndex(index)
 
 
+"""блок исключительно для теста"""
+
+
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -100,13 +103,15 @@ class MainWindow(QWidget):
 
         main_layout = QHBoxLayout()
         main_layout.addWidget(self.my_tree_view)
-        main_layout.addWidget(self.text_edit)
+        main_layout.addWidget(self.text_edit)  # виджет, куда нужно отправить данные
 
         self.setLayout(main_layout)
 
     def on_tree_view_click(self, index):
+        """Добавляет item туда, куда нужно"""
         item = self.my_tree_view.get_item(index)
-        self.text_edit.appendPlainText(item.text())
+        self.text_edit.appendPlainText(item.text())  # добавление в конец списка
+        print(item.text())  # вывод в консоль
 
 
 if __name__ == '__main__':

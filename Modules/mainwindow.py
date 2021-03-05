@@ -2,9 +2,8 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QLabel, QApplication
 
-from Modules.widget import Widget
-from Modules import styles, shiplist
-from Modules.shiplist import ShipTreeView
+from Modules.mainwidget import MainWidget
+from Modules import styles
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -15,7 +14,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setWindowTitle("SG Mechanicus by [INQ]Kate Simons v.0.0.1 alpha")
         self.setFixedSize(1000, 600)
         self.settings = QtCore.QSettings("Kate Simons", "SG Mechanicus")
-        self.SGM = Widget()
+        self.SGM = MainWidget()
         self.setCentralWidget(self.SGM)
         self.setStyleSheet(styles.window_style)
         self.SGM.setStyleSheet(styles.window_style)

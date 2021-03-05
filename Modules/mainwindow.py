@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QLabel, QApplication
 
 from Modules.widget import Widget
-from Modules import styles
+from Modules import styles, shiplist
 
 
 class MainWindow(QtWidgets.QMainWindow):

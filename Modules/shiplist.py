@@ -1,7 +1,8 @@
 # Списки имен шипов
 from PyQt5 import QtGui, QtWidgets
-from Modules import styles
 
+from Modules import styles
+from PyQt5.QtWidgets import QPlainTextEdit, QHBoxLayout, QApplication, QWidget
 
 mist_shiplist_name = QtGui.QStandardItem('Mist')
 frost_shiplist_name = QtGui.QStandardItem('Frost')
@@ -83,3 +84,35 @@ class ShipTreeView(QtWidgets.QTreeView):
         frigate_class.appendRow(t3_frigate_class)
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
+
+    def get_item(self, index):
+        return self.ship_standard_item_model.itemFromIndex(index)
+
+
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.my_tree_view = ShipTreeView()
+        self.my_tree_view.clicked.connect(self.on_tree_view_click)
+
+        self.text_edit = QPlainTextEdit()
+
+        main_layout = QHBoxLayout()
+        main_layout.addWidget(self.my_tree_view)
+        main_layout.addWidget(self.text_edit)
+
+        self.setLayout(main_layout)
+
+    def on_tree_view_click(self, index):
+        item = self.my_tree_view.get_item(index)
+        self.text_edit.appendPlainText(item.text())
+
+
+if __name__ == '__main__':
+    app = QApplication([])
+
+    mw = MainWindow()
+    mw.show()
+
+    app.exec()

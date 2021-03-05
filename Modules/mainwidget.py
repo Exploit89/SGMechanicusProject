@@ -5,6 +5,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
 
 from Modules import shiplist, equipmentlist, styles, fitlist, ships_tuples
+from Modules.shiplist import ShipTreeView
 
 
 class MainWidget(QtWidgets.QWidget):
@@ -19,7 +20,7 @@ class MainWidget(QtWidgets.QWidget):
         frame_shiptree.setFixedSize(200, 250)
         frame_shiptree.setLayout(shiptree)
         grid.addWidget(frame_shiptree, 2, 1, 6, 1)
-        shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления списка шипов
+        self.shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления списка шипов
         fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
 
         equipmenttree = QtWidgets.QVBoxLayout()  # Дерево эквипа
@@ -30,7 +31,7 @@ class MainWidget(QtWidgets.QWidget):
         equipmenttreebox = equipmentlist.EquipmentTreeView()
 
         ship_tab = QtWidgets.QTabWidget()
-        ship_tab.addTab(shiptreebox, "Ship")  # страница шипов
+        ship_tab.addTab(self.shiptreebox, "Ship")  # страница шипов
         ship_tab.addTab(fittreebox, "Fit")  # страница фитов
         shiptree.addWidget(ship_tab)  # добавляем список шипов
         ship_tab.setCurrentIndex(0)
@@ -175,6 +176,13 @@ class MainWidget(QtWidgets.QWidget):
         grid.addWidget(device_slot_label, 11, 7, 1, 3, QtCore.Qt.AlignCenter | QtCore.Qt.AlignBottom)
 
         self.setLayout(grid)
+
+        self.my_tree_view = ShipTreeView()
+        self.my_tree_view.clicked.connect(self.on_tree_view_click)
+
+    def on_tree_view_click(self, index):
+        item = self.my_tree_view.get_item(index)
+        print(item.text())
 
     def get_data_profile(self):
         """получение данных для последующей записи в файл"""

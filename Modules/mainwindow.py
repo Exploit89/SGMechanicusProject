@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QLabel, QApplication
 
 from Modules.mainwidget import MainWidget
 from Modules import styles
+from Modules.shiplist import ShipTreeView
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -76,6 +77,13 @@ class MainWindow(QtWidgets.QMainWindow):
         minimize_button.clicked.connect(self.showMinimized)
 
         self.pressing = False
+
+        self.my_tree_view = ShipTreeView()
+        self.my_tree_view.clicked.connect(self.on_tree_view_click)
+
+    def on_tree_view_click(self, index):
+        item = self.my_tree_view.get_item(index)
+        print(item.text())
 
     def take_screenshot(self):
         """копирует в буфер обмена скриншот по кнопке"""

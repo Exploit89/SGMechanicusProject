@@ -5,7 +5,6 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
 
 from Modules import shiplist, equipmentlist, styles, fitlist, ships_tuples
-from Modules.shiplist import ShipTreeView
 
 
 class MainWidget(QtWidgets.QWidget):

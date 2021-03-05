@@ -4,12 +4,6 @@ from PyQt5 import QtGui, QtWidgets
 from Modules import styles
 from PyQt5.QtWidgets import *
 
-# mist_shiplist_name = QtGui.QStandardItem('Mist')
-# frost_shiplist_name = QtGui.QStandardItem('Frost')
-# glimmer_shiplist_name = QtGui.QStandardItem('Glimmer')
-#
-# frigate_list = (mist_shiplist_name, frost_shiplist_name, glimmer_shiplist_name)
-
 destroyer_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
 cruiser_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']
 battlecruiser_list = ['ECD', 'NEF', 'RS', 'OE', 'USSH']

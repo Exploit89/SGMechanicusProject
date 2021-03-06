@@ -45,10 +45,10 @@ class MainWidget(QtWidgets.QWidget):
         main_image_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         grid.addWidget(main_image_frame, 2, 3, 6, 6)
 
-        pixmap = QPixmap(ships_tuples.mist.ship_image)  # загрузка картинки шипа
+        self.pixmap = QPixmap(ships_tuples.mist.ship_image)  # загрузка картинки шипа
         imagelabel = QLabel(self, alignment=Qt.AlignCenter)
         imagelabel.setScaledContents(True)
-        imagelabel.setPixmap(pixmap)
+        imagelabel.setPixmap(self.pixmap)
         hmain_image = QtWidgets.QHBoxLayout()
         hmain_image.addWidget(imagelabel)
         vmain_image = QtWidgets.QVBoxLayout(self)
@@ -148,9 +148,9 @@ class MainWidget(QtWidgets.QWidget):
         grid.setRowMinimumHeight(8, 10)
         grid.setRowMinimumHeight(15, 25)
 
-        image_label = QtWidgets.QLabel("shipname")  # задаем лейбл над картинкой шип+фит
+        self.image_label = QtWidgets.QLabel("shipname")  # задаем лейбл над картинкой шип+фит
         image_fit_label = QtWidgets.QLabel("fit name")
-        grid.addWidget(image_label, 1, 3, 1, 2)
+        grid.addWidget(self.image_label, 1, 3, 1, 2)
         grid.addWidget(image_fit_label, 1, 5, 1, 3)
 
         description_label = QtWidgets.QLabel("Description")  # лейбл итоговых характеристик
@@ -185,7 +185,9 @@ class MainWidget(QtWidgets.QWidget):
         item = self.shiptreebox.get_item(index)
         pointerQStandardItem = self.shiptreebox.ship_standard_item_model.itemFromIndex(index)
         print(f'Вы кликнули -> {item.text():>8}, --> pointerQStandardItem -> {pointerQStandardItem}')
-        print(item.text())
+        print(item.text())  # Имя объекта
+        self.image_label.setText(item.text())  # Задаем название шипа над картинкой
+
 
     def get_data_profile(self):
         """получение данных для последующей записи в файл"""

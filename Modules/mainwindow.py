@@ -83,7 +83,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def on_tree_view_click(self, index):
         item = self.my_tree_view.get_item(index)
-        print(item.text())
 
     def take_screenshot(self):
         """копирует в буфер обмена скриншот по кнопке"""

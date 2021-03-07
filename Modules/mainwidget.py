@@ -45,12 +45,12 @@ class MainWidget(QtWidgets.QWidget):
         main_image_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         grid.addWidget(main_image_frame, 2, 3, 6, 6)
 
-        self.pixmap = QPixmap("../Images/SGM_logo.png")  # загрузка картинки шипа ships_tuples.mist.ship_image
-        imagelabel = QLabel(self, alignment=Qt.AlignCenter)
-        imagelabel.setScaledContents(True)
-        imagelabel.setPixmap(self.pixmap)
+        self.pixmap = QPixmap("../Images/SGM_logo.png")  # загрузка(путь) начальной картинки шипа
+        self.imagelabel = QLabel(self, alignment=Qt.AlignCenter)
+        self.imagelabel.setScaledContents(True)
+        self.imagelabel.setPixmap(self.pixmap)  # установка начальной картинки
         hmain_image = QtWidgets.QHBoxLayout()
-        hmain_image.addWidget(imagelabel)
+        hmain_image.addWidget(self.imagelabel)
         vmain_image = QtWidgets.QVBoxLayout(self)
         vmain_image.addLayout(hmain_image)
         vmain_image.addStretch()
@@ -186,16 +186,20 @@ class MainWidget(QtWidgets.QWidget):
         pointerQStandardItem = self.shiptreebox.ship_standard_item_model.itemFromIndex(index)
         print(f'Вы кликнули -> {item.text():>8}, --> pointerQStandardItem -> {pointerQStandardItem}')
         print(item.text())  # Имя объекта
+        print(item.row())  # Номер строки объекта (возможно надо еще поработать, чтобы не было конфликтов)
+        print(item.flat)
 
         self.image_label.setText(item.text())  # Задаем название шипа над картинкой
-        shiptuple = ships_tuples.allships_parts
-        shiptuple2 = ships_tuples.allships
+        shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов
+        shiptuple2 = ships_tuples.allships  # кортеж с кортежами шипов
 
-        itemname = str(item.text()).lower()
+        itemname = str(item.text()).lower()  # приводим имя объекта в строку с маленькой буквы
+        itemrow = int(item.row())  # приводим номер строки объекта в число (получить через условия конкретный индекс)
 
         if itemname in shiptuple:
             print('that is!!')
-            self.pixmap = QPixmap(shiptuple2.mist[9])
+            self.newpixmap = QPixmap(shiptuple2[itemrow][9])
+            self.imagelabel.setPixmap(self.newpixmap)
         else:
             pass
 

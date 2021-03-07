@@ -1,78 +1,106 @@
-from PyQt5 import QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QPlainTextEdit
-# from Modules import styles
+# шипы и их содержимое
+from collections import namedtuple
 
+from Images.Ships import ship_images
 
-first_item_name = QtGui.QStandardItem('first_item')
-second_item_name = QtGui.QStandardItem('second_item')
+mist_parts = {
+    'ship_id': int(0),
+    'nation': "ECD",
+    'ship_type': "Frigate",
+    'tier': "T1",
+    'name': "Mist",
+    'role_1': "role_1",
+    'role_2': "role_2",
+    'tactical_component': "tactical_component",
+    'super_device': "super_device",
+    'ship_image': ship_images.mist_image,  # переменная с путем картинки
 
-first_list = (first_item_name, second_item_name)
+    'processor_capacity': int(),
+    'power_capacity': int(),
+    'energy_capacity': int(),
+    'auto_energy_recovery': int(),
+    'component_slots': int(),
+    'velocity': int(),
+    'agility': int(),
+    'shield_res_em': int(),
+    'shield_res_kinetic': int(),
+    'shield_res_thermal': int(),
+    'armor_res_em': int(),
+    'armor_res_kinetic': int(),
+    'armor_res_thermal': int(),
+    'shield': int(),
+    'auto_shield_recovery': int(),
+    'armor': int(),
+    'auto_armor_recovery': int(),
+    'volume_factor': int(),
+    'warp_stability': int(),
+    'warp_velocity': int(),
+    'cargo_space_capacity': int(),
+    'volume': int(),
 
-second_list = ['11', '22', '33', '44', '55']
+    'per_level_bonus1': int(),
+    'per_level_bonus2': int(),
+    'per_level_bonus3': int(),
 
+    'special_bonus1': int(),
+    'special_bonus2': int(),
+    'special_bonus3': int()
+}
+Mist = namedtuple('Mist', mist_parts)
+mist = Mist(**mist_parts)
 
-class MyTreeView(QtWidgets.QTreeView):
-    def __init__(self, parent=None):
-        QtWidgets.QTreeView.__init__(self, parent)
-        self.standard_item_model = QtGui.QStandardItemModel()
-        self.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+frost_parts = {
+    'ship_id': int(1),
+    'nation': "ECD",
+    'ship_type': "Frigate",
+    'tier': "T1",
+    'name': "Frost",
+    'role_1': "role_1",
+    'role_2': "role_2",
+    'tactical_component': "tactical_component",
+    'super_device': "super_device",
+    'ship_image': ship_images.frost_image,  # переменная с путем картинки
 
-        first_class = QtGui.QStandardItem('First')
-        self.standard_item_model.appendRow([first_class])
-        self.header().hide()
-        self.setModel(self.standard_item_model)
+    'processor_capacity': int(),
+    'power_capacity': int(),
+    'energy_capacity': int(),
+    'auto_energy_recovery': int(),
+    'component_slots': int(),
+    'velocity': int(),
+    'agility': int(),
+    'shield_res_em': int(),
+    'shield_res_kinetic': int(),
+    'shield_res_thermal': int(),
+    'armor_res_em': int(),
+    'armor_res_kinetic': int(),
+    'armor_res_thermal': int(),
+    'shield': int(),
+    'auto_shield_recovery': int(),
+    'armor': int(),
+    'auto_armor_recovery': int(),
+    'volume_factor': int(),
+    'warp_stability': int(),
+    'warp_velocity': int(),
+    'cargo_space_capacity': int(),
+    'volume': int(),
 
-        second_class = QtGui.QStandardItem('Second')
-        self.standard_item_model.appendRow([second_class])
-        self.header().hide()
-        self.setModel(self.standard_item_model)
+    'per_level_bonus1': int(),
+    'per_level_bonus2': int(),
+    'per_level_bonus3': int(),
 
-        t1_first_class = QtGui.QStandardItem('T1')
-        first_class.appendRow(t1_first_class)
-        for i in range(len(first_list)):
-            stditem = QtGui.QStandardItem(first_list[i])
-            t1_first_class.appendRow([stditem])
-        self.header().hide()
-        self.setModel(self.standard_item_model)
+    'special_bonus1': int(),
+    'special_bonus2': int(),
+    'special_bonus3': int()
+}
+Frost = namedtuple('Frost', frost_parts)
+frost = Frost(**frost_parts)
 
-        t2_first_class = QtGui.QStandardItem('T2')
-        first_class.appendRow(t2_first_class)
-        self.header().hide()
-        self.setModel(self.standard_item_model)
+allships_parts = {
+    'mist': mist,
+    'frost': frost
+}
 
-        t3_first_class = QtGui.QStandardItem('T3')
-        first_class.appendRow(t3_first_class)
-        self.header().hide()
-        self.setModel(self.standard_item_model)
+AllShips = namedtuple('AllShips', allships_parts)
+allships = AllShips(**allships_parts)
 
-    def get_item(self, index):
-        return self.standard_item_model.itemFromIndex(index)
-
-
-class MainWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-
-        self.my_tree_view = MyTreeView()
-        self.my_tree_view.clicked.connect(self.on_tree_view_click)
-
-        self.text_edit = QPlainTextEdit()
-
-        main_layout = QHBoxLayout()
-        main_layout.addWidget(self.my_tree_view)
-        main_layout.addWidget(self.text_edit)
-
-        self.setLayout(main_layout)
-
-    def on_tree_view_click(self, index):
-        item = self.my_tree_view.get_item(index)
-        self.text_edit.appendPlainText(item.text())
-
-
-if __name__ == '__main__':
-    app = QApplication([])
-
-    mw = MainWindow()
-    mw.show()
-
-    app.exec()
+print(allships.mist['name'])

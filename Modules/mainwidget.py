@@ -45,7 +45,7 @@ class MainWidget(QtWidgets.QWidget):
         main_image_frame.setFrameStyle(QtWidgets.QFrame.StyledPanel)
         grid.addWidget(main_image_frame, 2, 3, 6, 6)
 
-        self.pixmap = QPixmap(ships_tuples.mist.ship_image)  # загрузка картинки шипа
+        self.pixmap = QPixmap("../Images/SGM_logo.png")  # загрузка картинки шипа ships_tuples.mist.ship_image
         imagelabel = QLabel(self, alignment=Qt.AlignCenter)
         imagelabel.setScaledContents(True)
         imagelabel.setPixmap(self.pixmap)
@@ -186,7 +186,15 @@ class MainWidget(QtWidgets.QWidget):
         pointerQStandardItem = self.shiptreebox.ship_standard_item_model.itemFromIndex(index)
         print(f'Вы кликнули -> {item.text():>8}, --> pointerQStandardItem -> {pointerQStandardItem}')
         print(item.text())  # Имя объекта
+
         self.image_label.setText(item.text())  # Задаем название шипа над картинкой
+        shiptuple = ships_tuples.allships
+        lowert = item.text().lower
+        print(lowert)
+        if lowert in shiptuple:
+            self.pixmap.swap(shiptuple.mist[9])
+        else:
+            pass
 
 
     def get_data_profile(self):

@@ -94,3 +94,11 @@ frost_parts = {
 }
 Frost = namedtuple('Frost', frost_parts)
 frost = Frost(**frost_parts)
+
+allships_parts = {
+    'mist': mist,
+    'frost': frost
+}
+
+AllShips = namedtuple('AllShips', allships_parts)
+allships = AllShips(**allships_parts)

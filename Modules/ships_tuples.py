@@ -96,9 +96,18 @@ Frost = namedtuple('Frost', frost_parts)
 frost = Frost(**frost_parts)
 
 allships_parts = {
-    'Mist': mist,
+    'mist': mist,
     'frost': frost
 }
 
 AllShips = namedtuple('AllShips', allships_parts)
 allships = AllShips(**allships_parts)
+
+"""блок исключительно для проверки"""
+
+itemnamesomething = 'mist'
+
+if itemnamesomething in allships_parts:
+    print(allships.mist[9])
+else:
+    print('ass')

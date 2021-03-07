@@ -103,4 +103,4 @@ allships_parts = {
 AllShips = namedtuple('AllShips', allships_parts)
 allships = AllShips(**allships_parts)
 
-print(allships.mist[9])
+

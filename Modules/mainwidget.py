@@ -187,15 +187,18 @@ class MainWidget(QtWidgets.QWidget):
         print(f'Вы кликнули -> {item.text():>8}, --> pointerQStandardItem -> {pointerQStandardItem}')
         print(item.text())  # Имя объекта
 
-        # self.image_label.setText(item.text())  # Задаем название шипа над картинкой
-        # shiptuple = ships_tuples.allships
-        # print(shiptuple.Mist[9])
-        # itemname = item.text()
-        # for i in shiptuple:
-        #     if 'Mist' in i._fields:
-        #         self.pixmap = QPixmap(shiptuple.Mist[9])
-        #     else:
-        #         pass
+        self.image_label.setText(item.text())  # Задаем название шипа над картинкой
+        shiptuple = ships_tuples.allships_parts
+        shiptuple2 = ships_tuples.allships
+
+        itemname = str(item.text()).lower()
+
+        if itemname in shiptuple:
+            print('that is!!')
+            self.pixmap = QPixmap(shiptuple2.mist[9])
+        else:
+            pass
+
 
     def get_data_profile(self):
         """получение данных для последующей записи в файл"""

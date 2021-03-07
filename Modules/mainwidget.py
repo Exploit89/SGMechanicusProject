@@ -187,7 +187,7 @@ class MainWidget(QtWidgets.QWidget):
         print(f'Вы кликнули -> {item.text():>8}, --> pointerQStandardItem -> {pointerQStandardItem}')
         print(item.text())  # Имя объекта
         print(item.row())  # Номер строки объекта (возможно надо еще поработать, чтобы не было конфликтов)
-        print(item.flat)
+        # print(item.flat)
 
         self.image_label.setText(item.text())  # Задаем название шипа над картинкой
         shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов

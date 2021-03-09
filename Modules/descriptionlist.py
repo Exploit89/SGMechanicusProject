@@ -36,6 +36,19 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.thermal_armorvalue = QLabel("0%", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.kinetic_armorvalue = QLabel("0%", alignment=Qt.AlignLeft | Qt.AlignTop)
 
+        # dmg - ttl / dps
+        # range wpn / devic
+        # crt chnc / crt dmg
+        # proc / pow
+        # cap shd/ar/en
+        # rech shd/ar/en
+        # cap stab
+        # res shd/ar
+        # vel/vol fact
+        # warp vel/warp stab
+        # cargo
+
+
 
 
 """блок исключительно для теста"""

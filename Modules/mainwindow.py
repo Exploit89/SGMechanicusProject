@@ -1,6 +1,7 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QLabel, QApplication
+from PyQt5.QtGui import QPixmap, QIcon
 
 from Modules.mainwidget import MainWidget
 from Modules import styles
@@ -64,7 +65,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label.setStyleSheet(styles.label_style)
         self.label.setGeometry(330, 1, 650, 20)
 
-        quit_button = QtWidgets.QPushButton('X', self)  # кнопка закрытия окна
+        quit_button = QtWidgets.QPushButton(QIcon("../Images/Icons/close.png"), "", self)  # кнопка закрытия окна
+        quit_button.setStyleSheet(styles.tab_style)
         quit_button.setFixedSize(20, 20)
         quit_button.move(980, 0)
         quit_button.setFlat(True)

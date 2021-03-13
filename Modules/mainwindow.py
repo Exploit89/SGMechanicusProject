@@ -65,26 +65,20 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label.setStyleSheet(styles.label_style)
         self.label.setGeometry(330, 1, 650, 20)
 
-        quit_button = QtWidgets.QPushButton(QIcon("../Images/Icons/close.png"), "", self)  # кнопка закрытия окна
+        quit_button = QtWidgets.QPushButton(QIcon("../Images/Icons/Window/close.png"), "", self)  # кнопка закрытия окна
         quit_button.setStyleSheet(styles.tab_style)
         quit_button.setFixedSize(20, 20)
         quit_button.move(980, 0)
         quit_button.setFlat(True)
         quit_button.clicked.connect(self.close)
 
-        minimize_button = QtWidgets.QPushButton('_', self)  # кнопка сворачивания окна
+        minimize_button = QtWidgets.QPushButton(QIcon("../Images/Icons/Window/minimize.png"), "", self)  # свернуть
         minimize_button.setFixedSize(20, 20)
         minimize_button.move(960, 0)
         minimize_button.setFlat(True)
         minimize_button.clicked.connect(self.showMinimized)
 
         self.pressing = False
-
-        self.my_tree_view = ShipTreeView()
-        self.my_tree_view.clicked.connect(self.on_tree_view_click)
-
-    def on_tree_view_click(self, index):
-        item = self.my_tree_view.get_item(index)
 
     def take_screenshot(self):
         """копирует в буфер обмена скриншот по кнопке"""

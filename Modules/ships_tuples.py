@@ -16,7 +16,7 @@ mist_parts = {
     'ship_image': ship_images.mist_image,  # переменная с путем картинки
 
     'processor_capacity': int(),
-    'power_capacity': int(),
+    'power_capacity': int(145),
     'energy_capacity': int(),
     'auto_energy_recovery': int(),
     'component_slots': int(),

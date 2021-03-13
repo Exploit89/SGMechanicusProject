@@ -87,10 +87,14 @@ class MainWidget(QtWidgets.QWidget):
         self.descriptiontree.addWidget(self.splitter1)
 
         self.descriptiontree.addWidget(self.descriptiontree.procpower_label)
-        self.descriptiontree.addLayout(self.descriptiontree.procpower, QtCore.Qt.AlignTop)
-        self.descriptiontree.addWidget(self.descriptiontree.processorlabel)
+        self.descriptiontree.addLayout(self.descriptiontree.proc, QtCore.Qt.AlignTop)
+        self.descriptiontree.proc.addWidget(self.descriptiontree.processorlabel)
+        self.descriptiontree.proc.addWidget(self.descriptiontree.processor_data)
         self.descriptiontree.addWidget(self.descriptiontree.processorvalue)
-        self.descriptiontree.addWidget(self.descriptiontree.powerlabel)
+
+        self.descriptiontree.addLayout(self.descriptiontree.power, QtCore.Qt.AlignTop)
+        self.descriptiontree.power.addWidget(self.descriptiontree.powerlabel)
+        self.descriptiontree.power.addWidget(self.descriptiontree.power_data)
         self.descriptiontree.addWidget(self.descriptiontree.powervalue)
 
         self.splitter2 = QtWidgets.QFrame()

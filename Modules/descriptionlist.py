@@ -27,11 +27,27 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.crit_damagevalue = QLabel("300%", alignment=Qt.AlignLeft | Qt.AlignTop)
 
         self.procpower_label = QLabel("Ship resources", alignment=Qt.AlignHCenter)
-        self.procpower = QtWidgets.QVBoxLayout()
+        self.proc = QtWidgets.QHBoxLayout()
         self.processorlabel = QLabel("Processor: ", alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.processorvalue = QLabel("3000/50000", alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.processor_data = QLabel("3000/50000", alignment=Qt.AlignLeft | Qt.AlignTop)
+
+        self.processorvalue = QtWidgets.QProgressBar(self.processorlabel)
+        self.processorvalue.setFixedSize(280, 5)
+        self.processorvalue.setTextVisible(False)
+        self.processorvalue.setMaximum(10000)
+        self.processorvalue.setValue(1000)
+        self.processorvalue.setStyleSheet(styles.proc_style)
+
+        self.power = QtWidgets.QHBoxLayout()
         self.powerlabel = QLabel("Power: ", alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.powervalue = QLabel("40000/60000", alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.power_data = QLabel("40000/60000", alignment=Qt.AlignLeft | Qt.AlignTop)
+
+        self.powervalue = QtWidgets.QProgressBar(self.powerlabel)
+        self.powervalue.setFixedSize(280, 5)
+        self.powervalue.setTextVisible(False)
+        self.powervalue.setMaximum(10000)
+        self.powervalue.setValue(1000)
+        self.powervalue.setStyleSheet(styles.power_style)
 
         self.resistance_label = QLabel("Resistance", alignment=Qt.AlignHCenter)
         self.shield_resistance = QtWidgets.QHBoxLayout()

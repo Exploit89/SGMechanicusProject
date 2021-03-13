@@ -83,6 +83,31 @@ QProgressBar::chunk {
 }
 """
 
+"""Стиль полосы процессора"""
+proc_style = """
+QProgressBar {
+    background-color: #DCDDDE; 
+    border-radius: 1px;
+}
+
+QProgressBar::chunk {
+    background-color: #FFCA0C;
+    border: 0px solid #36393F;
+}
+"""
+
+"""Стиль полосы энергии"""
+power_style = """
+QProgressBar {
+    background-color: #DCDDDE; 
+    border-radius: 1px;
+}
+
+QProgressBar::chunk {
+    background-color: #017BF7;
+    border: 0px solid #36393F;
+}
+"""
 
 """Стиль скроллбара"""
 scrollbar_style = """

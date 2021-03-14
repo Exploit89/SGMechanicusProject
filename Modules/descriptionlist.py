@@ -29,7 +29,7 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.procpower_label = QLabel("Ship resources", alignment=Qt.AlignHCenter)
         self.proc = QtWidgets.QHBoxLayout()
         self.processorlabel = QLabel("Processor: ", alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.processor_data = QLabel("3000/50000", alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.processor_data = QLabel("0 / 0", alignment=Qt.AlignLeft | Qt.AlignTop)
 
         self.processorvalue = QtWidgets.QProgressBar(self.processorlabel)
         self.processorvalue.setFixedSize(280, 5)
@@ -82,7 +82,7 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.armor_rechargevalue_projector = QLabel("100 p/s", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.energy_capacitylayout = QtWidgets.QHBoxLayout()
         self.energy_capacitylabel = QLabel("Energy: ", alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.energy_capacityvalue = QLabel("25000", alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.energy_capacityvalue = QLabel("0", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.energy_rechargevalue_auto = QLabel("250 p/s", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.energy_rechargevalue_self = QLabel("100 p/s", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.energy_rechargevalue_projector = QLabel("300 p/s", alignment=Qt.AlignLeft | Qt.AlignTop)

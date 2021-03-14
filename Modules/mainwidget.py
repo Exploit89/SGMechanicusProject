@@ -331,7 +331,14 @@ class MainWidget(QtWidgets.QWidget):
             self.imagelabel.setPixmap(self.newpixmap)
             self.image_label.setText(item.text())  # Задаем название шипа над картинкой
             self.descriptiontree.processor_data.setText("0" + " / " + str(int(shiptuple2[itemrow][10])))
+            self.descriptiontree.processorvalue.setMaximum(int(shiptuple2[itemrow][10]))
             self.descriptiontree.power_data.setText("0" + " / " + str(int(shiptuple2[itemrow][11])))
+            self.descriptiontree.powervalue.setMaximum(int(shiptuple2[itemrow][11]))
+            self.descriptiontree.energy_capacityvalue.setText(str(int(shiptuple2[itemrow][12])))
+            self.descriptiontree.energy_rechargevalue_auto.setText(str(int(shiptuple2[itemrow][13])) + " p/s")
+            self.descriptiontree.em_shieldvalue.setText(str(int(shiptuple2[itemrow][17])) + "%")
+            self.descriptiontree.kinetic_shieldvalue.setText(str(int(shiptuple2[itemrow][18])) + "%")
+            self.descriptiontree.thermal_shieldvalue.setText(str(int(shiptuple2[itemrow][19])) + "%")
         else:
             pass
 

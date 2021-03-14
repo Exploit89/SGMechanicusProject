@@ -15,8 +15,8 @@ mist_parts = {
     'super_device': "super_device",
     'ship_image': ship_images.mist_image,  # переменная с путем картинки
 
-    'processor_capacity': int(),
-    'power_capacity': int(145),
+    'processor_capacity': int(220),
+    'power_capacity': int(118),
     'energy_capacity': int(),
     'auto_energy_recovery': int(),
     'component_slots': int(),
@@ -61,8 +61,8 @@ frost_parts = {
     'super_device': "super_device",
     'ship_image': ship_images.frost_image,  # переменная с путем картинки
 
-    'processor_capacity': int(),
-    'power_capacity': int(),
+    'processor_capacity': int(218),
+    'power_capacity': int(119),
     'energy_capacity': int(),
     'auto_energy_recovery': int(),
     'component_slots': int(),

@@ -34,21 +34,19 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.processorvalue = QtWidgets.QProgressBar(self.processorlabel)
         self.processorvalue.setFixedSize(280, 5)
         self.processorvalue.setTextVisible(False)
-        self.processorvalue.setMaximum(50000)
-        self.processorvalue.setValue(3000)
+        self.processorvalue.setMaximum(100)
+        self.processorvalue.setValue(10)
         self.processorvalue.setStyleSheet(styles.proc_style)
 
-        self.data1 = 0
-        self.data2 = 100
         self.power = QtWidgets.QHBoxLayout()
         self.powerlabel = QLabel("Power: ", alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.power_data = QLabel(str(self.data1) + "/" + str(self.data2), alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.power_data = QLabel("0 / 0", alignment=Qt.AlignLeft | Qt.AlignTop)
 
         self.powervalue = QtWidgets.QProgressBar(self.powerlabel)
         self.powervalue.setFixedSize(280, 5)
         self.powervalue.setTextVisible(False)
-        self.powervalue.setMaximum(self.data2)
-        self.powervalue.setValue(self.data1)
+        self.powervalue.setMaximum(100)
+        self.powervalue.setValue(10)
         self.powervalue.setStyleSheet(styles.power_style)
 
         self.resistance_label = QLabel("Resistance", alignment=Qt.AlignHCenter)

@@ -330,9 +330,8 @@ class MainWidget(QtWidgets.QWidget):
             self.newpixmap = QPixmap(shiptuple2[itemrow][9])
             self.imagelabel.setPixmap(self.newpixmap)
             self.image_label.setText(item.text())  # Задаем название шипа над картинкой
-            self.descriptiontree.data2 = int(shiptuple2[itemrow][11])
-            print(int(shiptuple2[itemrow][11]))
-            print(self.descriptiontree.data2)
+            self.descriptiontree.processor_data.setText("0" + " / " + str(int(shiptuple2[itemrow][10])))
+            self.descriptiontree.power_data.setText("0" + " / " + str(int(shiptuple2[itemrow][11])))
         else:
             pass
 

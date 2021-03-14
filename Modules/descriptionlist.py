@@ -38,8 +38,8 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.processorvalue.setValue(3000)
         self.processorvalue.setStyleSheet(styles.proc_style)
 
-        self.data1 = int(0)
-        self.data2 = int(100)
+        self.data1 = 0
+        self.data2 = 100
         self.power = QtWidgets.QHBoxLayout()
         self.powerlabel = QLabel("Power: ", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.power_data = QLabel(str(self.data1) + "/" + str(self.data2), alignment=Qt.AlignLeft | Qt.AlignTop)

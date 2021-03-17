@@ -1,9 +1,11 @@
 # Основное окно приложения
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QLabel, QApplication
+from PyQt5.QtGui import QPixmap, QIcon
 
 from Modules.mainwidget import MainWidget
 from Modules import styles
+from Modules.shiplist import ShipTreeView
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -63,19 +65,19 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label.setStyleSheet(styles.label_style)
         self.label.setGeometry(330, 1, 650, 20)
 
-        quit_button = QtWidgets.QPushButton('X', self)  # кнопка закрытия окна
+        quit_button = QtWidgets.QPushButton(QIcon("../Images/Icons/Window/close.png"), "", self)  # кнопка закрытия окна
+        quit_button.setStyleSheet(styles.tab_style)
         quit_button.setFixedSize(20, 20)
         quit_button.move(980, 0)
         quit_button.setFlat(True)
         quit_button.clicked.connect(self.close)
 
-        minimize_button = QtWidgets.QPushButton('_', self)  # кнопка сворачивания окна
+        minimize_button = QtWidgets.QPushButton(QIcon("../Images/Icons/Window/minimize.png"), "", self)  # свернуть
         minimize_button.setFixedSize(20, 20)
         minimize_button.move(960, 0)
         minimize_button.setFlat(True)
         minimize_button.clicked.connect(self.showMinimized)
 
-        #self.center()                                                     # +++
         self.pressing = False
 
     def take_screenshot(self):
@@ -102,23 +104,17 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             evt.ignore()
 
-    # def center(self):
-    #     qr = self.frameGeometry()
-    #     cp = QtWidgets.QDesktopWidget().availableGeometry().center()
-    #     qr.moveCenter(cp)
-    #     self.move(qr.topLeft())
-
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
-        self.pressing = True  # +++ !!!
+        self.pressing = True
 
     def mouseMoveEvent(self, event):
-        if self.pressing:  # +++ !!!
+        if self.pressing:
             delta = QtCore.QPoint(event.globalPos() - self.oldPos)
             self.move(self.x() + delta.x(), self.y() + delta.y())
             self.oldPos = event.globalPos()
 
-    def mouseReleaseEvent(self, event):  # +
+    def mouseReleaseEvent(self, event):
         self.pressing = False
 
     def aboutInfo(self):
@@ -126,10 +122,3 @@ class MainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMessageBox.about(self, "About app",
                                     "<center>\"SG Mechanicus\" v0.0.1 alpha<br><br>"
                                     "(c) [INQ]Kate Simons 2020-2021")
-
-"""постоянная центровка окна"""
-# window.move(window.width() * -2, 0)
-# desktop = QtWidgets.QApplication.desktop()
-# x = (desktop.width() - window.frameSize().width()) // 2
-# y = (desktop.height() - window.frameSize().height()) // 2
-# window.move(x, y)

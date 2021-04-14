@@ -24,12 +24,13 @@ class MainWidget(QtWidgets.QWidget):
 
         self.fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
 
-        ship_tab = QtWidgets.QTabWidget()
+        ship_tab = QtWidgets.QTabWidget()  # панель с вкладками - список шипов и фитов
         ship_tab.addTab(self.shiptreebox, "Ship")  # страница шипов
         ship_tab.addTab(self.fittreebox, "Fit")  # страница фитов
         shiptree.addWidget(ship_tab)  # добавляем список шипов
         ship_tab.setCurrentIndex(0)
         ship_tab.setStyleSheet(styles.tab_style)
+        ship_tab.setUsesScrollButtons(False)  # прокрутка для кнопок панели с вкладками
 
         equipmenttree = QtWidgets.QVBoxLayout()  # Дерево эквипа
         frame_equipmenttree = QtWidgets.QFrame()  # Рамка

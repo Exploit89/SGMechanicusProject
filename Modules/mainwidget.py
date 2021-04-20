@@ -319,7 +319,10 @@ class MainWidget(QtWidgets.QWidget):
         print(f'{item.text():>5}, {pointerQStandardItem}')  # pointerQStandardItem | :>5 это размер отступа
         print(item.text())  # Имя объекта
         print(item.row())  # Номер строки объекта (возможно надо еще поработать, чтобы не было конфликтов)
-        # print(item.flat)
+        #print(item.flat)
+        #print(item.index())
+        #print(item.rowCount())
+        #print(item.parent())
 
         shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов
         shiptuple2 = ships_tuples.allships  # кортеж с кортежами шипов

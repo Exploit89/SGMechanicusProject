@@ -5,6 +5,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
 
 from Modules import shiplist, equipmentlist, styles, fitlist, ships_tuples, descriptionlist
+from Modules.ships_tuples import allships_parts
 
 
 class MainWidget(QtWidgets.QWidget):
@@ -328,8 +329,15 @@ class MainWidget(QtWidgets.QWidget):
         itemname = str(item.text()).lower()  # приводим имя объекта в строку с маленькой буквы
         itemrow = int(item.row())  # приводим номер строки объекта в число (получить через условия конкретный индекс)
 
+        for i in allships_parts.items():  # проверяем имя из списка, присваиваем значение ship_id переменной
+            ship = itemname
+            if i[0] == ship:
+                itemrow2 = i[1][0]
+            else:
+                pass
+
         if itemname in shiptuple:
-            self.newpixmap = QPixmap(shiptuple2[itemrow][9])
+            self.newpixmap = QPixmap(shiptuple2[itemrow2][9])
             self.imagelabel.setPixmap(self.newpixmap)
             self.image_label.setText(item.text())  # Задаем название шипа над картинкой
             self.descriptiontree.processor_data.setText("0" + " / " + str(int(shiptuple2[itemrow][10])))

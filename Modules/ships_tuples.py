@@ -142,7 +142,7 @@ Glimmer = namedtuple('Glimmer', glimmer_parts)
 glimmer = Glimmer(**glimmer_parts)
 
 sprinkle_parts = {
-    'ship_id': int(99),
+    'ship_id': int(3),
     'nation': "ECD",
     'ship_type': "Frigate",
     'tier': "T2",
@@ -202,7 +202,14 @@ allships = AllShips(**allships_parts)
 
 itemnamesomething = 'mist'
 
+for i in allships_parts.items():
+    #print(i[0], i[1][0])
+    shipsss = 'sprinkle'
+    if i[0] == shipsss:
+        iii = (i[1][0])
+        print(i[1][0])
+
 if itemnamesomething in allships_parts:
-    print(allships.mist[9])
+    print(allships[iii][8])
 else:
     print('ass')

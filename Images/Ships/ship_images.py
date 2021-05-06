@@ -2,3 +2,6 @@
 
 mist_image = '../Images/Ships/ECD/Mist.png'
 frost_image = '../Images/Ships/ECD/Frost.png'
+glimmer_image = '../Images/Ships/ECD/Glimmer.png'
+
+sprinkle_image = '../Images/Ships/ECD/Sprinkle.png'

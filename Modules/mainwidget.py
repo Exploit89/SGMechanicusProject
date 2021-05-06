@@ -321,6 +321,7 @@ class MainWidget(QtWidgets.QWidget):
         print(item.text())  # Имя объекта
         print(item.row())  # Номер строки объекта (возможно надо еще поработать, чтобы не было конфликтов)
 
+
         shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов
         shiptuple2 = ships_tuples.allships  # кортеж с кортежами шипов
 

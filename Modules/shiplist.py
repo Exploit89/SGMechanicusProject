@@ -28,8 +28,11 @@ class ShipTreeView(QtWidgets.QTreeView):
         mist_shiplist_name = QtGui.QStandardItem('Mist')
         frost_shiplist_name = QtGui.QStandardItem('Frost')
         glimmer_shiplist_name = QtGui.QStandardItem('Glimmer')
+        sprinkle_shiplist_name = QtGui.QStandardItem('Sprinkle')
+        snowflake_shiplist_name = QtGui.QStandardItem('Snowflake')
 
-        frigate_list = (mist_shiplist_name, frost_shiplist_name, glimmer_shiplist_name)
+        t1_frigate_list = (mist_shiplist_name, frost_shiplist_name, glimmer_shiplist_name)
+        t2_frigate_list = (sprinkle_shiplist_name, snowflake_shiplist_name)
 
         self.ship_standard_item_model = QtGui.QStandardItemModel()
         self.setStyleSheet(styles.scrollbar_style)
@@ -69,14 +72,17 @@ class ShipTreeView(QtWidgets.QTreeView):
 
         t1_frigate_class = QtGui.QStandardItem(QtGui.QIcon(t1_icon), 'T1')
         frigate_class.appendRow(t1_frigate_class)
-        for i in range(len(frigate_list)):
-            stditem = QtGui.QStandardItem(frigate_list[i])
+        for i in range(len(t1_frigate_list)):
+            stditem = QtGui.QStandardItem(t1_frigate_list[i])
             t1_frigate_class.appendRow([stditem])
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
         t2_frigate_class = QtGui.QStandardItem(QtGui.QIcon(t2_icon), 'T2')
         frigate_class.appendRow(t2_frigate_class)
+        for i in range(len(t2_frigate_list)):
+            stditem = QtGui.QStandardItem(t2_frigate_list[i])
+            t2_frigate_class.appendRow([stditem])
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 

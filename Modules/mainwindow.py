@@ -1,8 +1,10 @@
 # Основное окно приложения
+
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QLabel, QApplication
 from PyQt5.QtGui import QPixmap, QIcon
 
+from Modules.implant_window import ImplantWindow
 from Modules.mainwidget import MainWidget
 from Modules import styles
 from Modules.shiplist import ShipTreeView
@@ -51,7 +53,7 @@ class MainWindow(QtWidgets.QMainWindow):
         toolbar.setFixedHeight(30)
         toolbar.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
 
-        open_implant = toolbar.addAction("Implant")  # Добавить в скобки перед именем - действие
+        open_implant = toolbar.addAction("Implant", self.open_implant_window)
         open_academy = toolbar.addAction("Academy")  # Добавить в скобки перед именем - действие
         open_research = toolbar.addAction("Research")  # Добавить в скобки перед именем - действие
         open_recruit = toolbar.addAction("Recruit")  # Добавить в скобки перед именем - действие
@@ -122,3 +124,8 @@ class MainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMessageBox.about(self, "About app",
                                     "<center>\"SG Mechanicus\" v0.0.1 alpha<br><br>"
                                     "(c) [INQ]Kate Simons 2020-2021")
+
+    def open_implant_window(self):
+
+        implantWindow = ImplantWindow(self)
+        implantWindow.show()

@@ -5,6 +5,9 @@ from PyQt5.QtWidgets import QLabel, QApplication
 from PyQt5.QtGui import QPixmap, QIcon
 
 from Modules.implant_window import ImplantWindow
+from Modules.academy_window import AcademyWindow
+from Modules.research_window import ResearchWindow
+from Modules.recruit_window import RecruitWindow
 from Modules.mainwidget import MainWidget
 from Modules import styles
 from Modules.shiplist import ShipTreeView
@@ -54,9 +57,9 @@ class MainWindow(QtWidgets.QMainWindow):
         toolbar.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
 
         open_implant = toolbar.addAction("Implant", self.open_implant_window)
-        open_academy = toolbar.addAction("Academy")  # Добавить в скобки перед именем - действие
-        open_research = toolbar.addAction("Research")  # Добавить в скобки перед именем - действие
-        open_recruit = toolbar.addAction("Recruit")  # Добавить в скобки перед именем - действие
+        open_academy = toolbar.addAction("Academy", self.open_academy_window)
+        open_research = toolbar.addAction("Research", self.open_research_window)
+        open_recruit = toolbar.addAction("Recruit", self.open_recruit_window)
         do_screenshot = toolbar.addAction("Screenshot", self.take_screenshot)
 
         if self.settings.contains("X") and self.settings.contains("Y"):  # проверка и загрузка сохраненных координат
@@ -129,3 +132,18 @@ class MainWindow(QtWidgets.QMainWindow):
 
         implantWindow = ImplantWindow(self)
         implantWindow.show()
+
+    def open_academy_window(self):
+
+        academyWindow = AcademyWindow(self)
+        academyWindow.show()
+
+    def open_research_window(self):
+
+        researchWindow = ResearchWindow(self)
+        researchWindow.show()
+
+    def open_recruit_window(self):
+
+        recruitWindow = RecruitWindow(self)
+        recruitWindow.show()

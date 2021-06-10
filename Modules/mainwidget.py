@@ -1,5 +1,5 @@
 # Основной виджет
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
@@ -376,5 +376,8 @@ class MainWidget(QtWidgets.QWidget):
             newfitname, ok = QtWidgets.QInputDialog.getText(main, "New fit name", "Enter fit name", text='newfit')
             if ok:
                 print(newfitname)
+                newfitlist = QtGui.QStandardItem(newfitname)
+                self.fittreebox.ship_standard_item_model.appendRow(newfitlist)
+                # добавить копирование инфы из shiplist и помещение в определенную ячейку фитлиста
         else:
             pass

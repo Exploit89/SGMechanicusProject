@@ -22,6 +22,7 @@ class MainWidget(QtWidgets.QWidget):
         grid.addWidget(frame_shiptree, 2, 1, 6, 1)
         self.shiptreebox = shiplist.ShipTreeView()  # определяем виджет для добавления списка шипов
         self.shiptreebox.clicked.connect(self.on_tree_view_click)
+        self.shiptreebox.doubleClicked.connect(self.on_tree_view_doubleclick)
 
         self.fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
 
@@ -359,3 +360,21 @@ class MainWidget(QtWidgets.QWidget):
     def set_data_profile(self):
         """вставка данных из файла в программу"""
         pass
+
+    def on_tree_view_doubleclick(self, index):
+        item = self.shiptreebox.get_item(index)
+        pointerQStandardItem = self.shiptreebox.ship_standard_item_model.itemFromIndex(index)
+        print('double', f'{item.text():>5}, {pointerQStandardItem}')  # pointerQStandardItem | :>5 это размер отступа
+        print('double', item.text())  # Имя объекта
+        print('double', item.row())  # Номер строки объекта (возможно надо еще поработать, чтобы не было конфликтов)
+        main = MainWidget()
+
+        shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов
+        itemname = str(item.text()).lower()  # приводим имя объекта в строку с маленькой буквы
+
+        if itemname in shiptuple:
+            newfitname, ok = QtWidgets.QInputDialog.getText(main, "New fit name", "Enter fit name", text='newfit')
+            if ok:
+                print(newfitname)
+        else:
+            pass

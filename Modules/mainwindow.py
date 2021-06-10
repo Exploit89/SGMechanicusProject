@@ -35,6 +35,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         save_action = QtWidgets.QAction("Save Profile", self)
         # добавить функцию выполнения в эту строку
+        save_action.triggered.connect(self.saving_profile)
         file_menu.addAction(save_action)
 
         load_action = QtWidgets.QAction("Load Profile", self)
@@ -147,3 +148,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
         recruitWindow = RecruitWindow(self)
         recruitWindow.show()
+
+    def saving_profile(self):
+        # Допилить что откуда и куда сохранять
+        file = QtWidgets.QFileDialog.getSaveFileName(parent=self.SGM, caption='Save profile to...',
+                                                     directory=QtCore.QDir.currentPath(),
+                                                     filter='All (*);;Python Code (*.py *.pyw)')
+        fileName = file[0]
+        file = QtWidgets.QFileDialog.getSaveFileUrl(parent=self.SGM, caption='Save profile to...',
+                                                    filter='All (*);;Python Code (*.py *.pyw)')
+        fileName = file[0].toLocalFile()

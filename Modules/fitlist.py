@@ -43,13 +43,13 @@ class FitTreeView(QtWidgets.QTreeView):
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
-        t1_frigate_class = QtGui.QStandardItem(QtGui.QIcon(shiplist.t1_icon), 'T1')
-        frigate_class.appendRow(t1_frigate_class)
+        self.t1_frigate_class = QtGui.QStandardItem(QtGui.QIcon(shiplist.t1_icon), 'T1')
+        frigate_class.appendRow(self.t1_frigate_class)
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 
-        t2_frigate_class = QtGui.QStandardItem(QtGui.QIcon(shiplist.t2_icon), 'T2')
-        frigate_class.appendRow(t2_frigate_class)
+        self.t2_frigate_class = QtGui.QStandardItem(QtGui.QIcon(shiplist.t2_icon), 'T2')
+        frigate_class.appendRow(self.t2_frigate_class)
         self.header().hide()
         self.setModel(self.ship_standard_item_model)
 

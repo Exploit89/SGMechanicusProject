@@ -323,7 +323,6 @@ class MainWidget(QtWidgets.QWidget):
         print(item.text())  # Имя объекта
         print(item.row())  # Номер строки объекта (возможно надо еще поработать, чтобы не было конфликтов)
 
-
         shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов
         shiptuple2 = ships_tuples.allships  # кортеж с кортежами шипов
 
@@ -370,14 +369,28 @@ class MainWidget(QtWidgets.QWidget):
         main = MainWidget()
 
         shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов
+        shiptuple2 = ships_tuples.allships
         itemname = str(item.text()).lower()  # приводим имя объекта в строку с маленькой буквы
+
+        for i in allships_parts.items():  # проверяем имя из списка, присваиваем значение ship_id переменной
+            ship = itemname
+            if i[0] == ship:
+                itemrow2 = i[1][0]
+            else:
+                pass
 
         if itemname in shiptuple:
             newfitname, ok = QtWidgets.QInputDialog.getText(main, "New fit name", "Enter fit name", text='newfit')
             if ok:
                 print(newfitname)
                 newfitlist = QtGui.QStandardItem(newfitname)
-                self.fittreebox.ship_standard_item_model.appendRow(newfitlist)
+                if shiptuple2[itemrow2][2] == 'Frigate' and shiptuple2[itemrow2][3] == 'T1':
+                    self.fittreebox.t1_frigate_class.appendRow(newfitlist)
+                elif shiptuple2[itemrow2][2] == 'Frigate' and shiptuple2[itemrow2][3] == 'T2':
+                    self.fittreebox.t2_frigate_class.appendRow(newfitlist)
+                else:
+                    pass
                 # добавить копирование инфы из shiplist и помещение в определенную ячейку фитлиста
+                # допилить условия по помещению в определенную ячейку
         else:
             pass

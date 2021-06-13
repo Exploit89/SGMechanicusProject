@@ -1,4 +1,4 @@
-# Списки имен эквипа
+# Центральная картинка
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtGui import QImage
 

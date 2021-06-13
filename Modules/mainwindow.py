@@ -10,7 +10,6 @@ from Modules.research_window import ResearchWindow
 from Modules.recruit_window import RecruitWindow
 from Modules.mainwidget import MainWidget
 from Modules import styles
-from Modules.shiplist import ShipTreeView
 
 
 class MainWindow(QtWidgets.QMainWindow):

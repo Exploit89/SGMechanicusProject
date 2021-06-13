@@ -400,7 +400,7 @@ class MainWidget(QtWidgets.QWidget):
                     self.fittreebox.t3_frigate_class.appendRow(newfitlist)
                 else:
                     pass
-                # добавить копирование инфы из shiplist и помещение в определенную ячейку фитлиста
+                # добавить копирование инфы из shiplist
                 # допилить условия по помещению в определенную ячейку
         else:
             pass

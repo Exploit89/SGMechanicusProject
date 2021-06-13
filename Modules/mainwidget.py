@@ -327,7 +327,6 @@ class MainWidget(QtWidgets.QWidget):
         shiptuple2 = ships_tuples.allships  # кортеж с кортежами шипов
 
         itemname = str(item.text()).lower()  # приводим имя объекта в строку с маленькой буквы
-        itemrow = int(item.row())  # приводим номер строки объекта в число (получить через условия конкретный индекс)
 
         for i in allships_parts.items():  # проверяем имя из списка, присваиваем значение ship_id переменной
             ship = itemname
@@ -340,15 +339,20 @@ class MainWidget(QtWidgets.QWidget):
             self.newpixmap = QPixmap(shiptuple2[itemrow2][9])
             self.imagelabel.setPixmap(self.newpixmap)
             self.image_label.setText(item.text())  # Задаем название шипа над картинкой
-            self.descriptiontree.processor_data.setText("0" + " / " + str(int(shiptuple2[itemrow][10])))
-            self.descriptiontree.processorvalue.setMaximum(int(shiptuple2[itemrow][10]))
-            self.descriptiontree.power_data.setText("0" + " / " + str(int(shiptuple2[itemrow][11])))
-            self.descriptiontree.powervalue.setMaximum(int(shiptuple2[itemrow][11]))
-            self.descriptiontree.energy_capacityvalue.setText(str(int(shiptuple2[itemrow][12])))
-            self.descriptiontree.energy_rechargevalue_auto.setText(str(int(shiptuple2[itemrow][13])) + " p/s")
-            self.descriptiontree.em_shieldvalue.setText(str(int(shiptuple2[itemrow][17])) + "%")
-            self.descriptiontree.kinetic_shieldvalue.setText(str(int(shiptuple2[itemrow][18])) + "%")
-            self.descriptiontree.thermal_shieldvalue.setText(str(int(shiptuple2[itemrow][19])) + "%")
+            self.descriptiontree.processor_data.setText("0" + " / " + str(int(shiptuple2[itemrow2][10])))
+            self.descriptiontree.processorvalue.setMaximum(int(shiptuple2[itemrow2][10]))
+            self.descriptiontree.power_data.setText("0" + " / " + str(int(shiptuple2[itemrow2][11])))
+            self.descriptiontree.powervalue.setMaximum(int(shiptuple2[itemrow2][11]))
+            self.descriptiontree.energy_capacityvalue.setText(str(int(shiptuple2[itemrow2][12])))
+            self.descriptiontree.energy_rechargevalue_auto.setText(str(int(shiptuple2[itemrow2][13])) + " p/s")
+            self.descriptiontree.em_shieldvalue.setText(str(int(shiptuple2[itemrow2][17])) + "%")
+            self.descriptiontree.kinetic_shieldvalue.setText(str(int(shiptuple2[itemrow2][18])) + "%")
+            self.descriptiontree.thermal_shieldvalue.setText(str(int(shiptuple2[itemrow2][19])) + "%")
+            self.descriptiontree.em_armorvalue.setText(str(int(shiptuple2[itemrow2][20])) + "%")
+            self.descriptiontree.kinetic_armorvalue.setText(str(int(shiptuple2[itemrow2][21])) + "%")
+            self.descriptiontree.thermal_armorvalue.setText(str(int(shiptuple2[itemrow2][22])) + "%")
+            self.descriptiontree.shield_capacityvalue.setText(str(int(shiptuple2[itemrow2][23])))
+            self.descriptiontree.shield_rechargevalue_auto.setText(str(int(shiptuple2[itemrow2][24])) + " p/s")
         else:
             pass
 
@@ -388,6 +392,8 @@ class MainWidget(QtWidgets.QWidget):
                     self.fittreebox.t1_frigate_class.appendRow(newfitlist)
                 elif shiptuple2[itemrow2][2] == 'Frigate' and shiptuple2[itemrow2][3] == 'T2':
                     self.fittreebox.t2_frigate_class.appendRow(newfitlist)
+                elif shiptuple2[itemrow2][2] == 'Frigate' and shiptuple2[itemrow2][3] == 'T3':
+                    self.fittreebox.t3_frigate_class.appendRow(newfitlist)
                 else:
                     pass
                 # добавить копирование инфы из shiplist и помещение в определенную ячейку фитлиста

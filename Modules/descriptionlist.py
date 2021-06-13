@@ -94,7 +94,7 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.capastab_activelabel = QLabel("Active: ", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.capastab_activevalue = QLabel("240 sec", alignment=Qt.AlignLeft | Qt.AlignTop)
 
-        self.velocity_label = QLabel("Velocity / Volume / Warp speed", alignment=Qt.AlignHCenter)
+        self.velocity_label = QLabel("Velocity / Volume / Warp", alignment=Qt.AlignHCenter)
         self.velocity_passive_layout = QHBoxLayout()
         self.velocity_passivelabel = QLabel("Velocity Passive: ", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.velocity_passivevalue = QLabel("800 m/s", alignment=Qt.AlignLeft | Qt.AlignTop)
@@ -105,8 +105,8 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.volumefactor_label = QLabel("Volume factor: ", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.volumefactor_value = QLabel("130", alignment=Qt.AlignLeft | Qt.AlignTop)
         self.warp_layout = QHBoxLayout()
-        self.warp_label = QLabel("Warp speed: ", alignment=Qt.AlignLeft | Qt.AlignTop)
-        self.warp_value = QLabel("4,5 AU/s", alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.warp_label = QLabel("Warp stability: ", alignment=Qt.AlignLeft | Qt.AlignTop)
+        self.warp_value = QLabel("0", alignment=Qt.AlignLeft | Qt.AlignTop)
 
         # range device?
         # cargo

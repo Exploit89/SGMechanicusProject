@@ -353,6 +353,10 @@ class MainWidget(QtWidgets.QWidget):
             self.descriptiontree.thermal_armorvalue.setText(str(int(shiptuple2[itemrow2][22])) + "%")
             self.descriptiontree.shield_capacityvalue.setText(str(int(shiptuple2[itemrow2][23])))
             self.descriptiontree.shield_rechargevalue_auto.setText(str(int(shiptuple2[itemrow2][24])) + " p/s")
+            self.descriptiontree.armor_capacityvalue.setText(str(int(shiptuple2[itemrow2][25])))
+            self.descriptiontree.armor_rechargevalue_auto.setText(str(int(shiptuple2[itemrow2][26])) + " p/s")
+            self.descriptiontree.volumefactor_value.setText(str(int(shiptuple2[itemrow2][27])))
+            self.descriptiontree.warp_value.setText(str(int(shiptuple2[itemrow2][28])))
         else:
             pass
 

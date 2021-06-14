@@ -86,3 +86,6 @@ class FitTreeView(QtWidgets.QTreeView):
 
         self.t3_exclusive_class = QtGui.QStandardItem(QtGui.QIcon(shiplist.t3_icon), 'T3')
         exclusive_ship_class.appendRow(self.t3_exclusive_class)
+
+    def get_item(self, index):
+        return self.ship_standard_item_model.itemFromIndex(index)

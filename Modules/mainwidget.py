@@ -25,6 +25,7 @@ class MainWidget(QtWidgets.QWidget):
         self.shiptreebox.doubleClicked.connect(self.on_tree_view_doubleclick)
 
         self.fittreebox = fitlist.FitTreeView()  # определяем виджет для добавления списка фитов
+        self.fittreebox.clicked.connect(self.on_fittree_view_click)
 
         ship_tab = QtWidgets.QTabWidget()  # панель с вкладками - список шипов и фитов
         ship_tab.addTab(self.shiptreebox, "Ship")  # страница шипов
@@ -283,9 +284,9 @@ class MainWidget(QtWidgets.QWidget):
         grid.setRowMinimumHeight(15, 25)
 
         self.image_label = QtWidgets.QLabel("shipname")  # задаем лейбл над картинкой шип+фит
-        image_fit_label = QtWidgets.QLabel("fit name")
+        self.image_fit_label = QtWidgets.QLabel("fit name")
         grid.addWidget(self.image_label, 1, 3, 1, 2)
-        grid.addWidget(image_fit_label, 1, 5, 1, 3)
+        grid.addWidget(self.image_fit_label, 1, 5, 1, 3)
 
         description_label = QtWidgets.QLabel("Description")  # лейбл итоговых характеристик
         grid.addWidget(description_label, 1, 12, 1, 1, QtCore.Qt.AlignCenter)
@@ -392,6 +393,7 @@ class MainWidget(QtWidgets.QWidget):
             if ok:
                 print(newfitname)
                 newfitlist = QtGui.QStandardItem(newfitname)
+                newfitlist.setData(itemname, 32)
                 if shiptuple2[itemrow2][2] == 'Frigate' and shiptuple2[itemrow2][3] == 'T1':
                     self.fittreebox.t1_frigate_class.appendRow(newfitlist)
                 elif shiptuple2[itemrow2][2] == 'Frigate' and shiptuple2[itemrow2][3] == 'T2':
@@ -402,5 +404,50 @@ class MainWidget(QtWidgets.QWidget):
                     pass
                 # добавить копирование инфы из shiplist
                 # допилить условия по помещению в определенную ячейку
+        else:
+            pass
+
+    def on_fittree_view_click(self, data):
+        """Выбор фита в списке"""
+        item = self.fittreebox.get_item(data)
+        print(item.text())  # Имя объекта
+        print(item.row())  # Номер строки объекта (возможно надо еще поработать, чтобы не было конфликтов)
+        print(item.data(32))
+
+        shiptuple = ships_tuples.allships_parts  # словарь с кортежами шипов
+        shiptuple2 = ships_tuples.allships  # кортеж с кортежами шипов
+
+        itemname = str(item.data(32)).lower()  # приводим имя объекта в строку с маленькой буквы
+
+        for i in allships_parts.items():  # проверяем имя из списка, присваиваем значение ship_id переменной
+            ship = itemname
+            if i[0] == ship:
+                itemrow2 = i[1][0]
+            else:
+                pass
+
+        if itemname in shiptuple:
+            self.newpixmap = QPixmap(shiptuple2[itemrow2][9])
+            self.imagelabel.setPixmap(self.newpixmap)
+            self.image_label.setText(item.data(32))  # Задаем название шипа над картинкой
+            self.image_fit_label.setText(item.text())  # Задаем название фита над картинкой
+            self.descriptiontree.processor_data.setText("0" + " / " + str(int(shiptuple2[itemrow2][10])))
+            self.descriptiontree.processorvalue.setMaximum(int(shiptuple2[itemrow2][10]))
+            self.descriptiontree.power_data.setText("0" + " / " + str(int(shiptuple2[itemrow2][11])))
+            self.descriptiontree.powervalue.setMaximum(int(shiptuple2[itemrow2][11]))
+            self.descriptiontree.energy_capacityvalue.setText(str(int(shiptuple2[itemrow2][12])))
+            self.descriptiontree.energy_rechargevalue_auto.setText(str(int(shiptuple2[itemrow2][13])) + " p/s")
+            self.descriptiontree.em_shieldvalue.setText(str(int(shiptuple2[itemrow2][17])) + "%")
+            self.descriptiontree.kinetic_shieldvalue.setText(str(int(shiptuple2[itemrow2][18])) + "%")
+            self.descriptiontree.thermal_shieldvalue.setText(str(int(shiptuple2[itemrow2][19])) + "%")
+            self.descriptiontree.em_armorvalue.setText(str(int(shiptuple2[itemrow2][20])) + "%")
+            self.descriptiontree.kinetic_armorvalue.setText(str(int(shiptuple2[itemrow2][21])) + "%")
+            self.descriptiontree.thermal_armorvalue.setText(str(int(shiptuple2[itemrow2][22])) + "%")
+            self.descriptiontree.shield_capacityvalue.setText(str(int(shiptuple2[itemrow2][23])))
+            self.descriptiontree.shield_rechargevalue_auto.setText(str(int(shiptuple2[itemrow2][24])) + " p/s")
+            self.descriptiontree.armor_capacityvalue.setText(str(int(shiptuple2[itemrow2][25])))
+            self.descriptiontree.armor_rechargevalue_auto.setText(str(int(shiptuple2[itemrow2][26])) + " p/s")
+            self.descriptiontree.volumefactor_value.setText(str(int(shiptuple2[itemrow2][27])))
+            self.descriptiontree.warp_value.setText(str(int(shiptuple2[itemrow2][28])))
         else:
             pass

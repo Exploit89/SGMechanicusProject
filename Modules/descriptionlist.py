@@ -35,7 +35,7 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.processorvalue.setFixedSize(280, 5)
         self.processorvalue.setTextVisible(False)
         self.processorvalue.setMaximum(100)
-        self.processorvalue.setValue(10)
+        self.processorvalue.setValue(1)
         self.processorvalue.setStyleSheet(styles.proc_style)
 
         self.power = QtWidgets.QHBoxLayout()
@@ -46,7 +46,7 @@ class DescriptionView(QtWidgets.QVBoxLayout):
         self.powervalue.setFixedSize(280, 5)
         self.powervalue.setTextVisible(False)
         self.powervalue.setMaximum(100)
-        self.powervalue.setValue(10)
+        self.powervalue.setValue(1)
         self.powervalue.setStyleSheet(styles.power_style)
 
         self.resistance_label = QLabel("Resistance", alignment=Qt.AlignHCenter)
